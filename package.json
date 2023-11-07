@@ -15,9 +15,15 @@
   "dependencies": {
     "core-js": "^3.33.2",
     "element-plus": "^2.4.2",
+    "monaco-editor": "^0.44.0",
+    "monaco-editor-webpack-plugin": "^7.1.0",
+    "nice-monaco-tree": "^1.0.7",
     "remixicon": "^3.5.0",
+    "split-pane-v3": "^1.1.2",
     "vue": "^3.3.8",
-    "vue-i18n": "^9.6.5"
+    "vue-i18n": "^9.6.5",
+    "vue-router": "^4.2.5",
+    "vue-tabs-chrome": "^0.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",

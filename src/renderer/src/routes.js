@@ -5,11 +5,17 @@ export default [
     {
         path: '/',
         name: 'HomePage',
-        component: Home
+        component: Home,
+        meta: {
+            keepAlive: true
+        }
     },
     {
         path: '/dev',
         name: 'DevPage',
-        component: Dev
+        component: Dev,
+        meta: {
+            keepAlive: true
+        }
     }
 ]

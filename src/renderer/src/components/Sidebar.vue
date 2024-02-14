@@ -1,5 +1,5 @@
 <template>
-    <el-menu id="sidebar" default-active="1" class="ncd-menu-vertical" :collapse="false" router>
+    <el-menu id="sidebar" default-active="1" class="ncd-menu-vertical" :collapse="true" router>
         <el-menu-item-group>
             <el-menu-item index="1">
                 <template #title>{{ $t('ncd_ui.sidebar_home') }}</template>

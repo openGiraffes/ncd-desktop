@@ -8,34 +8,34 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 export default defineConfig({
-  main: {
-    plugins: [
-      externalizeDepsPlugin(),
-      commonjsExternals({
-        externals: ['fs', 'path', 'require']
-      })
-    ]
-  },
-  preload: {
-    plugins: [externalizeDepsPlugin()]
-  },
-  renderer: {
-    resolve: {
-      alias: {
-        '@renderer': resolve('src/renderer/src')
-      }
+    main: {
+        plugins: [
+            externalizeDepsPlugin(),
+            commonjsExternals({
+                externals: ['fs', 'path', 'require']
+            })
+        ]
     },
-    plugins: [
-      vue(),
-      AutoImport({
-        resolvers: [ElementPlusResolver()]
-      }),
-      Components({
-        resolvers: [ElementPlusResolver()]
-      }),
-      VueI18nPlugin({
-        /* options */
-      })
-    ]
-  }
+    preload: {
+        plugins: [externalizeDepsPlugin()]
+    },
+    renderer: {
+        resolve: {
+            alias: {
+                '@renderer': resolve('src/renderer/src')
+            }
+        },
+        plugins: [
+            vue(),
+            AutoImport({
+                resolvers: [ElementPlusResolver()]
+            }),
+            Components({
+                resolvers: [ElementPlusResolver()]
+            }),
+            VueI18nPlugin({
+                /* options */
+            })
+        ]
+    }
 })

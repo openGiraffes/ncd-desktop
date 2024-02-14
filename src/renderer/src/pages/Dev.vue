@@ -1,7 +1,6 @@
 <template>
     <div class="ncd-monaco-editor">
         <MonacoEditor
-            v-model:value="value"
             theme="vs"
             :options="options"
             language="javascript"
@@ -12,6 +11,7 @@
 
 <script>
 import MonacoEditor from 'monaco-editor-vue3'
+
 export default {
     name: 'DevPage',
     components: {
@@ -19,7 +19,8 @@ export default {
     },
     data() {
         return {
-            code: 'console.log("Hello world")'
+            options: {},
+            original: ''
         }
     },
     mounted() {},

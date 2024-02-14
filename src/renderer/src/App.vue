@@ -1,8 +1,14 @@
 <template>
-    <el-main>
-        <router-view></router-view>
-    </el-main>
-    <Sidebar></Sidebar>
+    <el-container>
+        <Sidebar></Sidebar>
+        <el-main>
+            <router-view v-slot="{ Component, route }">
+                <keep-alive>
+                    <component :is="Component" v-if="route.meta.keepAlive" :key="route.path" />
+                </keep-alive>
+            </router-view>
+        </el-main>
+    </el-container>
 </template>
 
 <script>

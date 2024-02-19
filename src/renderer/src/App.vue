@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+    <el-container style="height: 100%">
         <Sidebar></Sidebar>
         <el-main>
             <router-view v-slot="{ Component, route }">
@@ -24,7 +24,6 @@ export default {
 
 <style>
 #app {
-    height: 790px;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

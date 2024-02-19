@@ -8,10 +8,18 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
+    IEpCircleCheckFilled: typeof import('~icons/ep/circle-check-filled')['default']
+    IEpHomefilled: typeof import('~icons/ep/homefilled')['default']
+    IEpHomeFilled: typeof import('~icons/ep/home-filled')['default']
+    IEpSetting: typeof import('~icons/ep/setting')['default']
+    IEpShoppingBag: typeof import('~icons/ep/shopping-bag')['default']
+    IEpTools: typeof import('~icons/ep/tools')['default']
+    IEpTopRight: typeof import('~icons/ep/top-right')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./src/components/Sidebar.vue')['default']

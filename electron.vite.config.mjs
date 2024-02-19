@@ -6,6 +6,10 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+
+const path_src = resolve(__dirname, 'src/renderer')
 
 export default defineConfig({
     main: {
@@ -28,10 +32,26 @@ export default defineConfig({
         plugins: [
             vue(),
             AutoImport({
-                resolvers: [ElementPlusResolver()]
+                imports: ['vue'],
+                resolvers: [
+                    ElementPlusResolver(),
+                    IconsResolver({
+                        prefix: 'Icon'
+                    })
+                ],
+                dts: resolve(path_src, 'auto-imports.d.ts')
             }),
             Components({
-                resolvers: [ElementPlusResolver()]
+                resolvers: [
+                    ElementPlusResolver(),
+                    IconsResolver({
+                        enabledCollections: ['ep']
+                    })
+                ],
+                dts: resolve(path_src, 'components.d.ts')
+            }),
+            Icons({
+                autoInstall: true
             }),
             VueI18nPlugin({
                 /* options */

@@ -20,15 +20,18 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "@element-plus/icons-vue": "^2.3.1",
     "electron-updater": "^6.1.7",
     "element-plus": "^2.5.5",
     "monaco-editor": "^0.46.0",
     "monaco-editor-vue3": "^0.1.10",
+    "unplugin-icons": "^0.18.5",
     "vue-i18n": "^9.9.1",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.1",
+    "@iconify-json/ep": "^1.1.14",
     "@intlify/unplugin-vue-i18n": "^2.0.0",
     "@rushstack/eslint-patch": "^1.6.1",
     "@vitejs/plugin-vue": "^5.0.3",

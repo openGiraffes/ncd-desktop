@@ -19,7 +19,9 @@ export default {
     },
     data() {
         return {
-            options: {},
+            options: {
+                automaticLayout: true  // 开启自适应尺寸
+            },
             original: ''
         }
     },
@@ -33,6 +35,7 @@ export default {
 </script>
 <style scoped>
 .ncd-monaco-editor {
-    height: 90vh;
+    /* height: 90vh; */
+    height: 100%;
 }
 </style>

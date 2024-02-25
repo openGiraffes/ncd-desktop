@@ -5,6 +5,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './routes'
 
 //Monaco Editor Workers
+import { loader } from "@guolao/vue-monaco-editor"
+import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'
+import * as monaco from "monaco-editor"
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
 import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker'
@@ -27,11 +30,13 @@ self.MonacoEnvironment = {
         return new editorWorker()
     }
 }
-
-import zh_CN from './lang/zh_CN'
-import en_US from './lang/en_US'
+loader.config({ monaco })
 
 const app = createApp(App)
+
+// Init vue-i18n and lang files
+import zh_CN from './lang/zh_CN'
+import en_US from './lang/en_US'
 const i18n = createI18n({
     locale: 'zh_CN',
     legacy: false,
@@ -48,4 +53,5 @@ const router = createRouter({
 
 app.use(i18n)
 app.use(router)
+app.use(VueMonacoEditorPlugin)
 app.mount('#app')

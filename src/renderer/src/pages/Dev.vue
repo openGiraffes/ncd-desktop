@@ -1,38 +1,38 @@
 <template>
     <div class="ncd-monaco-editor">
-        <MonacoEditor
-            theme="vs"
-            :options="options"
-            language="javascript"
-            :original="original"
-        ></MonacoEditor>
+        <vue-monaco-editor 
+            v-model:value="code" 
+            theme="vs" 
+            :options="MONACO_EDITOR_OPTIONS"
+            @mount="handleMount"
+        ></vue-monaco-editor>
     </div>
 </template>
 
-<script>
-import MonacoEditor from 'monaco-editor-vue3'
-
+<script lang="ts">
 export default {
-    name: 'DevPage',
-    components: {
-        MonacoEditor
-    },
-    data() {
-        return {
-            options: {
-                automaticLayout: true  // 开启自适应尺寸
-            },
-            original: ''
-        }
-    },
-    mounted() {},
-    methods: {
-        getFileContent(filePath) {
-            return [`${filePath}-left`, `${filePath}-right`]
-        }
-    }
+    name: 'DevPage'
 }
 </script>
+
+<script lang="ts" setup>
+import { ref, shallowRef } from 'vue'
+
+const MONACO_EDITOR_OPTIONS = {
+    automaticLayout: true,
+    formatOnType: true,
+    formatOnPaste: true,
+}
+
+const code = ref('// Hello world')
+const editorRef = shallowRef()
+const handleMount = editor => (editorRef.value = editor)
+
+function formatCode() {
+    editorRef.value?.getAction('editor.action.formatDocument').run()
+}
+</script>
+
 <style scoped>
 .ncd-monaco-editor {
     /* height: 90vh; */

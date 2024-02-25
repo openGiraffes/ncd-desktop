@@ -14,6 +14,9 @@ dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.3.1
     version: 2.3.1(vue@3.4.18)
+  '@guolao/vue-monaco-editor':
+    specifier: ^1.5.1
+    version: 1.5.1(monaco-editor@0.46.0)(vue@3.4.18)
   electron-updater:
     specifier: ^6.1.7
     version: 6.1.7
@@ -23,9 +26,6 @@ dependencies:
   monaco-editor:
     specifier: ^0.46.0
     version: 0.46.0
-  monaco-editor-vue3:
-    specifier: ^0.1.10
-    version: 0.1.10(typescript@5.3.3)
   unplugin-icons:
     specifier: ^0.18.5
     version: 0.18.5
@@ -702,6 +702,22 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: false
 
+  /@guolao/vue-monaco-editor@1.5.1(monaco-editor@0.46.0)(vue@3.4.18):
+    resolution: {integrity: sha512-nhbQHDAwsxrdH/yitcrBgAkN8Cae0IEiYe/M3LWK8bSJRfapkbMyfTHE6Gcxsxa/6efSUZAPDo8dJWBDx5GZyA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.7.1
+      monaco-editor: '>=0.43.0'
+      vue: ^2.6.14 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@monaco-editor/loader': 1.4.0(monaco-editor@0.46.0)
+      monaco-editor: 0.46.0
+      vue: 3.4.18(typescript@5.3.3)
+      vue-demi: 0.14.7(vue@3.4.18)
+    dev: false
+
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -880,6 +896,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@monaco-editor/loader@1.4.0(monaco-editor@0.46.0):
+    resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==}
+    peerDependencies:
+      monaco-editor: '>= 0.21.0 < 1'
+    dependencies:
+      monaco-editor: 0.46.0
+      state-local: 1.0.7
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3153,20 +3178,6 @@ packages:
       pkg-types: 1.0.3
       ufo: 1.4.0
 
-  /monaco-editor-vue3@0.1.10(typescript@5.3.3):
-    resolution: {integrity: sha512-C1jhyx+KHQyW1AbjuA8DhIZSqkVquV7MnuWXG9jESd0e+CkzEFzuk1RvNqlN2eJ2fRkvF32yEPHYfvz9quOhHQ==}
-    dependencies:
-      monaco-editor: 0.33.0
-      vite-plugin-monaco-editor: 1.1.0(monaco-editor@0.33.0)
-      vue: 3.4.18(typescript@5.3.3)
-    transitivePeerDependencies:
-      - typescript
-    dev: false
-
-  /monaco-editor@0.33.0:
-    resolution: {integrity: sha512-VcRWPSLIUEgQJQIE0pVT8FcGBIgFoxz7jtqctE+IiCxWugD0DwgyQBcZBhdSrdMC84eumoqMZsGl2GTreOzwqw==}
-    dev: false
-
   /monaco-editor@0.46.0:
     resolution: {integrity: sha512-ADwtLIIww+9FKybWscd7OCfm9odsFYHImBRI1v9AviGce55QY8raT+9ihH8jX/E/e6QVSGM+pKj4jSUSRmALNQ==}
     dev: false
@@ -3633,6 +3644,10 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
+  /state-local@1.0.7:
+    resolution: {integrity: sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==}
+    dev: false
+
   /string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -3986,14 +4001,6 @@ packages:
       magic-string: 0.30.7
       vite: 5.1.0
     dev: true
-
-  /vite-plugin-monaco-editor@1.1.0(monaco-editor@0.33.0):
-    resolution: {integrity: sha512-IvtUqZotrRoVqwT0PBBDIZPNraya3BxN/bfcNfnxZ5rkJiGcNtO5eAOWWSgT7zullIAEqQwxMU83yL9J5k7gww==}
-    peerDependencies:
-      monaco-editor: '>=0.33.0'
-    dependencies:
-      monaco-editor: 0.33.0
-    dev: false
 
   /vite@5.1.0:
     resolution: {integrity: sha512-STmSFzhY4ljuhz14bg9LkMTk3d98IO6DIArnTY6MeBwiD1Za2StcQtz7fzOUnRCqrHSD5+OS2reg4HOz1eoLnw==}

@@ -5,6 +5,7 @@ export default {
         sidebar_debugger: '调试',
         sidebar_tools: '工具',
         sidebar_store: 'KaiOS 商店',
-        sidebar_settings: '设置'
+        sidebar_settings: '设置',
+        tools_packagezip: '打包 ZIP 程序包'
     }
 }

@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .ncd-menu-vertical:not(.el-menu--collapse) {
-    width: 200px;
+    width: 100%;
     height: 100%;
 }
 </style>

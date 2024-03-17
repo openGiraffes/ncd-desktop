@@ -8,10 +8,22 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import optimizer from 'vite-plugin-optimizer'
+
+import { getReplacer } from './plugins/importInternal'
 
 const path_src = resolve(__dirname, 'src/renderer')
 
 export default defineConfig({
+    optimizeDeps: {
+        include: [
+            `monaco-editor/esm/vs/language/json/json.worker`,
+            `monaco-editor/esm/vs/language/css/css.worker`,
+            `monaco-editor/esm/vs/language/html/html.worker`,
+            `monaco-editor/esm/vs/language/typescript/ts.worker`,
+            `monaco-editor/esm/vs/editor/editor.worker`
+        ]
+    },
     main: {
         plugins: [
             externalizeDepsPlugin(),
@@ -31,6 +43,7 @@ export default defineConfig({
         },
         plugins: [
             vue(),
+            optimizer(getReplacer()),
             AutoImport({
                 imports: ['vue'],
                 resolvers: [

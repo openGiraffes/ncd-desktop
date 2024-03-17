@@ -1,11 +1,13 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, ipcRenderer, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
+let mainWindow = null
+
 function createWindow() {
     // Create the browser window.
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 900,
         height: 670,
         show: false,
@@ -13,7 +15,10 @@ function createWindow() {
         ...(process.platform === 'linux' ? { icon } : {}),
         webPreferences: {
             preload: join(__dirname, '../preload/index.js'),
-            sandbox: false
+            sandbox: false,
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true
         }
     })
 
@@ -35,7 +40,7 @@ function createWindow() {
     }
 }
 
-// 关闭GPU加速 
+// 关闭GPU加速
 app.disableHardwareAcceleration()
 
 // This method will be called when Electron has finished
@@ -54,6 +59,7 @@ app.whenReady().then(() => {
 
     // IPC test
     ipcMain.on('ping', () => console.log('pong'))
+    ipcMain.handle('dialog:openFile', handleFileOpen)
 
     createWindow()
 
@@ -73,5 +79,17 @@ app.on('window-all-closed', () => {
     }
 })
 
-// In this file you can include the rest of your app"s specific main process
-// code. You can also put them in separate files and require them here.
+async function handleFileOpen() {
+    const options = {
+        title: 'Select a Folder',
+        properties: ['openDirectory']
+    }
+    const { canceled, filePaths } = await dialog.showOpenDialog(options)
+    if (canceled) {
+        console.log(1)
+        return
+    } else {
+        console.log(2, filePaths)
+        return filePaths[0]
+    }
+}

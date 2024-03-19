@@ -1,4 +1,5 @@
 import { type Files } from 'monaco-tree-editor'
+import * as fs from '../../apis/fs'
 
 const fileSeparator = '\\'
 let responseFiles: Files = {
@@ -7,7 +8,7 @@ let responseFiles: Files = {
     },
     'D:\\TestMonaco\\index.js': {
         isFile: true,
-        content: 'console.log("hello world")'
+        content: ''
     }
 }
 
@@ -29,11 +30,13 @@ export const createOrSaveFile = async (path: string, content: string) => {
             throw new Error(`save file:[ ${path} ] is not a file!`)
         }
         responseFiles[path].content = content
+        await fs.writeFileSync(path, content) // 写入文件
     } else {
         responseFiles[path] = {
             isFile: true,
-            content
+            content: await fs.readFileSync(path)
         }
+        console.log(path)
     }
 }
 export const newFile = async (path: string) => {

@@ -1,11 +1,13 @@
 import { app, shell, BrowserWindow, ipcMain, ipcRenderer, dialog } from 'electron'
 import { join } from 'path'
 import Store from 'electron-store'
+Store.initRenderer()
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
-Store.initRenderer()
-const store = new Store()
+import { electron_store_init_main } from '../apis/electron-store'
+import { fs_init_main } from '../apis/fs'
+
 let mainWindow = null
 
 function createWindow() {
@@ -57,10 +59,9 @@ app.whenReady().then(() => {
     ipcMain.on('ping', () => console.log('pong'))
     ipcMain.handle('dialog:openFile', handleFileOpen)
 
-    ipcMain.handle('electron-store-get', (_, key) => store.get(key))
-    ipcMain.handle('electron-store-has', (_, key) => store.has(key))
-    ipcMain.on('electron-store-set', (_, key, value) => store.set(key, value))
-
+    electron_store_init_main()
+    fs_init_main()
+    
     createWindow()
 
     app.on('activate', function () {

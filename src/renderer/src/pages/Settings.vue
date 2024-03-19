@@ -21,7 +21,7 @@
 <script>
 import { ipcRenderer } from 'electron'
 import { onMounted } from 'vue'
-import * as stores from '../apis/electron-store'
+import * as stores from '../../apis/electron-store'
 
 export default {
     name: 'SettingsPage',

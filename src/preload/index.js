@@ -1,6 +1,9 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
+import { electron_store_init_preload } from '../apis/electron-store'
+import { fs_init_preload } from '../apis/fs'
+
 // Custom APIs for renderer
 const api = {}
 
@@ -26,11 +29,8 @@ if (process.contextIsolated) {
                 downloadUrl: (url) => ipcRenderer.invoke('download-url', url),
             }
         })
-        contextBridge.exposeInMainWorld('store', {
-            get: (key) => ipcRenderer.invoke('electron-store-get', key),
-            set: (key, value) => ipcRenderer.invoke('electron-store-set', key, value),
-            has: (key) => ipcRenderer.invoke('electron-store-has', key),
-        })
+        contextBridge.exposeInMainWorld('store', electron_store_init_preload)
+        contextBridge.exposeInMainWorld('fs', fs_init_preload)
         contextBridge.exposeInMainWorld('api', api)
     } catch (error) {
         console.error(error)

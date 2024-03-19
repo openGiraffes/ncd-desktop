@@ -36,9 +36,11 @@ import * as server from '../mocks/tree-mock-server'
 
 // Monaco tree Start
 const files = ref<Files>()
-const handleReload = (resolve: () => void, reject: (msg?: string) => void) => {
-    server
-        .fetchFiles()
+const handleReload = (
+    resolve: () => void, 
+    reject: (msg?: string) => void
+) => {
+    server.fetchFiles()
         .then((response) => {
             files.value = response
             resolve()

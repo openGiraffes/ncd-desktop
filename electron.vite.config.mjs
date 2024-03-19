@@ -13,7 +13,7 @@ import optimizer from 'vite-plugin-optimizer'
 import { getReplacer } from './plugins/importInternal'
 
 const path_src = resolve(__dirname, 'src/renderer')
-
+const externals = ['fs', 'path', 'require', /^electron(\/.+)?$/]
 export default defineConfig({
     optimizeDeps: {
         include: [
@@ -22,13 +22,14 @@ export default defineConfig({
             `monaco-editor/esm/vs/language/html/html.worker`,
             `monaco-editor/esm/vs/language/typescript/ts.worker`,
             `monaco-editor/esm/vs/editor/editor.worker`
-        ]
+        ],
+        exclude: externals
     },
     main: {
         plugins: [
             externalizeDepsPlugin(),
             commonjsExternals({
-                externals: ['fs', 'path', 'require']
+                externals: externals
             })
         ]
     },

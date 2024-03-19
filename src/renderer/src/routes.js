@@ -1,5 +1,6 @@
 import Home from './pages/Home.vue'
 import Dev from './pages/Dev.vue'
+import Settings from './pages/Settings.vue'
 
 // Tool pages
 import Tools from './pages/Tools.vue'
@@ -34,6 +35,14 @@ export default [
         path: '/tools/packageZip',
         name: 'PackageZip',
         component: PackageZip,
+        meta: {
+            keepAlive: true
+        }
+    },
+    {
+        path: '/settings',
+        name: 'SettingsPage',
+        component: Settings,
         meta: {
             keepAlive: true
         }

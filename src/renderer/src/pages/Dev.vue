@@ -20,19 +20,19 @@ import { Editor as MonacoTreeEditor, Files } from 'monaco-tree-editor'
 import 'monaco-tree-editor/index.css'
 import * as server from '../mocks/tree-mock-server'
 
-const MONACO_EDITOR_OPTIONS = {
-    automaticLayout: true,
-    formatOnType: true,
-    formatOnPaste: true,
-}
+// const MONACO_EDITOR_OPTIONS = {
+//     automaticLayout: true,
+//     formatOnType: true,
+//     formatOnPaste: true,
+// }
 
-const code = ref('console.log("test")')
-const editorRef = shallowRef()
-const handleMount = editor => (editorRef.value = editor)
+// const code = ref('console.log("test")')
+// const editorRef = shallowRef()
+// const handleMount = editor => (editorRef.value = editor)
 
-function formatCode() {
-    editorRef.value?.getAction('editor.action.formatDocument').run()
-}
+// function formatCode() {
+//     editorRef.value?.getAction('editor.action.formatDocument').run()
+// }
 
 // Monaco tree Start
 const files = ref<Files>()

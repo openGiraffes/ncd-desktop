@@ -26,8 +26,12 @@ if (process.contextIsolated) {
                 downloadUrl: (url) => ipcRenderer.invoke('download-url', url),
             }
         })
+        contextBridge.exposeInMainWorld('store', {
+            get: (key) => ipcRenderer.invoke('electron-store-get', key),
+            set: (key, value) => ipcRenderer.invoke('electron-store-set', key, value),
+            has: (key) => ipcRenderer.invoke('electron-store-has', key),
+        })
         contextBridge.exposeInMainWorld('api', api)
-
     } catch (error) {
         console.error(error)
     }

@@ -1,0 +1,49 @@
+<mxfile host="65bd71144e">
+    <diagram id="n_QiqDBVZItm7eTRPUjo" name="第 1 页">
+        <mxGraphModel dx="1042" dy="998" grid="1" gridSize="12" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="本地软件技术架构" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontSize=17;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="80" width="650" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="前端页面" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fontSize=17;" parent="2" vertex="1">
+                    <mxGeometry y="30" width="530" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Vue" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="3" vertex="1">
+                    <mxGeometry x="40" y="40" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Monaco Editor&lt;br style=&quot;font-size: 17px;&quot;&gt;前端 API" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="3" vertex="1">
+                    <mxGeometry x="150" y="40" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Element Plus" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="3" vertex="1">
+                    <mxGeometry x="260" y="40" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="CSS" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="3" vertex="1">
+                    <mxGeometry x="370" y="40" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="本地处理后端" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fontSize=17;" parent="2" vertex="1">
+                    <mxGeometry y="200" width="530" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Node.js" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="8" vertex="1">
+                    <mxGeometry x="40" y="40" width="70" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Monaco Editor&lt;br style=&quot;font-size: 17px;&quot;&gt;后端 API" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="8" vertex="1">
+                    <mxGeometry x="140" y="40" width="70" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Electron" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="8" vertex="1">
+                    <mxGeometry x="240" y="40" width="70" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Socket" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="8" vertex="1">
+                    <mxGeometry x="340" y="40" width="70" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="HTTP" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="8" vertex="1">
+                    <mxGeometry x="440" y="40" width="70" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="JSON-RPC" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" parent="2" vertex="1">
+                    <mxGeometry x="530" y="30" width="120" height="340" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

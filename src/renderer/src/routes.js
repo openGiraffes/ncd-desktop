@@ -1,12 +1,21 @@
 import Home from './pages/Home.vue'
 import Dev from './pages/Dev.vue'
 import Settings from './pages/Settings.vue'
+import Account from './pages/Account.vue'
 
 // Tool pages
 import Tools from './pages/Tools.vue'
 import PackageZip from './pages/ToolsPages/PackageZip.vue'
 
 export default [
+    {
+        path: '/account',
+        name: 'AccountPage',
+        component: Account,
+        meta: {
+            keepAlive: true
+        }
+    },
     {
         path: '/',
         name: 'HomePage',

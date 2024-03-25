@@ -30,4 +30,7 @@ export default {
     text-align: center;
     color: #2c3e50;
 }
+.nowrap-items{
+    flex-wrap: nowrap!important;
+}
 </style>

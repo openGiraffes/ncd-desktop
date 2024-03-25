@@ -6,6 +6,7 @@ export default {
         sidebar_tools: '工具',
         sidebar_store: 'KaiOS 商店',
         sidebar_settings: '设置',
+        sidebar_account: '账户',
         home_recent_project: '最近项目',
         tools_packagezip: '打包 ZIP 程序包',
         tools_packagezip_radio: '打包类型',

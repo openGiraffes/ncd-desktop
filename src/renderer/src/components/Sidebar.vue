@@ -1,6 +1,10 @@
 <template>
     <el-menu id="sidebar" default-active="/" class="ncd-menu-vertical" :collapse="true" router>
         <el-menu-item-group>
+            <el-menu-item index="/account">
+                <el-icon><img class="ncd-account-avatar-sidebar" :src="NcdAvatar" alt="avatar"></el-icon>
+                <template #title>{{ $t('ncd_ui.sidebar_account') }}</template>
+            </el-menu-item>
             <el-menu-item index="/">
                 <el-icon><i-ep-home-filled /></el-icon>
                 <template #title>{{ $t('ncd_ui.sidebar_home') }}</template>
@@ -30,14 +34,24 @@
 </template>
 
 <script>
+import default_avatar from '../assets/default_avatar.png'
 export default {
     name: 'Sidebar'
 }
+</script>
+
+<script setup>
+const NcdAvatar = default_avatar
 </script>
 
 <style scoped>
 .ncd-menu-vertical:not(.el-menu--collapse) {
     width: 200px;
     height: 100%;
+}
+.ncd-account-avatar-sidebar {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
 }
 </style>

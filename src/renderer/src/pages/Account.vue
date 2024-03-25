@@ -1,0 +1,56 @@
+<template>
+    <div class="ncd-account-page">
+        <el-container>
+            <el-aside>
+                <img class="ncd-account-avatar" :src="NcdAvatar" alt="avatar" />
+                <div class="buttons-account">
+                    <div v-if="isLogin">
+                        <div class="button-sync"><el-button type="primary">同步设置</el-button></div>
+                        <div class="button-logout"><el-button>登出</el-button></div>
+                    </div>
+                    <div v-else>
+                        <div class="button-login"><el-button type="primary">登录</el-button></div>
+                        <div class="button-reg"><el-button>注册</el-button></div>
+                    </div>
+                </div>
+            </el-aside>
+        </el-container>
+    </div>
+</template>
+
+<script>
+import default_avatar from '../assets/default_avatar.png'
+export default {
+    name: 'AccountPage'
+}
+</script>
+
+<script setup>
+const NcdAvatar = default_avatar
+const isLogin = false
+</script>
+
+<style scoped>
+.ncd-account-page{
+    height: 100%;
+}
+.el-container{
+    height: 100%;
+}
+.ncd-account-avatar {
+    width: 256px;
+    height: 256px;
+    border-radius: 100%;
+}
+.buttons-account {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.buttons-account > *,
+.buttons-account .el-button{
+    width: 100%;
+    margin-bottom: 6px;
+}
+</style>

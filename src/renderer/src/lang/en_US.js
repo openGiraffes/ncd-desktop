@@ -6,6 +6,7 @@ export default {
         sidebar_tools: 'Tools',
         sidebar_store: 'KaiOS Store',
         sidebar_settings: 'Settings',
+        sidebar_account: 'Account',
         home_recent_project: 'Recent Project',
         tools_packagezip: 'Package ZIP',
         tools_packagezip_radio: 'Package Type',

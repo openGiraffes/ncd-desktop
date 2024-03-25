@@ -5,10 +5,12 @@
                 <img class="ncd-account-avatar" :src="NcdAvatar" alt="avatar" />
                 <div class="buttons-account">
                     <div v-if="isLogin">
+                        <p class="account-username"></p>
                         <div class="button-sync"><el-button type="primary">同步设置</el-button></div>
                         <div class="button-logout"><el-button>登出</el-button></div>
                     </div>
                     <div v-else>
+                        <p class="account-username">未登录</p>
                         <div class="button-login"><el-button type="primary">登录</el-button></div>
                         <div class="button-reg"><el-button>注册</el-button></div>
                     </div>

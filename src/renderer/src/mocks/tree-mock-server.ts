@@ -3,10 +3,31 @@ import * as fs from '../../apis/fs'
 
 const fileSeparator = '\\'
 let responseFiles: Files = {
-    'D:\\TestMonaco\\components': {
+    'D:\\TestMonaco\\application': {
         isFolder: true
     },
-    'D:\\TestMonaco\\index.js': {
+    'D:\\TestMonaco\\application\\css': {
+        isFolder: true
+    },
+    'D:\\TestMonaco\\application\\img': {
+        isFolder: true
+    },
+    'D:\\TestMonaco\\application\\js': {
+        isFolder: true
+    },
+    'D:\\TestMonaco\\application\\index.html': {
+        isFile: true,
+        content: ''
+    },
+    'D:\\TestMonaco\\application\\manifest.webapp': {
+        isFile: true,
+        content: ''
+    },
+    'D:\\TestMonaco\\metadata.json': {
+        isFile: true,
+        content: ''
+    },
+    'D:\\TestMonaco\\README.md': {
         isFile: true,
         content: ''
     }

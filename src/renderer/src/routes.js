@@ -1,5 +1,7 @@
 import Home from './pages/Home.vue'
 import Dev from './pages/Dev.vue'
+import Debug from './pages/Debug.vue'
+import KaiStore from './pages/KaiStore.vue'
 import Settings from './pages/Settings.vue'
 import Account from './pages/Account.vue'
 
@@ -33,6 +35,14 @@ export default [
         }
     },
     {
+        path: '/debug',
+        name: 'DebugPage',
+        component: Debug,
+        meta: {
+            keepAlive: true
+        }
+    },
+    {
         path: '/tools',
         name: 'ToolsPage',
         component: Tools,
@@ -44,6 +54,14 @@ export default [
         path: '/tools/packageZip',
         name: 'PackageZip',
         component: PackageZip,
+        meta: {
+            keepAlive: true
+        }
+    },
+    {
+        path: '/store',
+        name: 'KaiStorePage',
+        component: KaiStore,
         meta: {
             keepAlive: true
         }

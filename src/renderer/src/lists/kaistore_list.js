@@ -11,14 +11,14 @@ export default {
             code: "bh_store",
             desc: "BananaHackers Store (Static)",
             fulldesc: "BananaHackers Store (Third-party | Static backend)",
-            url: "https://jsdelivr.b-cdn.net/gh/bananahackers/store-db@gh-pages/data.json",
+            url: "https://fastly.jsdelivr.net/gh/bananahackers/store-db@gh-pages/data.json",
             type: "static"
         },
         "giraffe_store_static": {
             code: "giraffe_store_static",
             desc: "openGiraffes Store (Static)",
             fulldesc: "openGiraffes Store (第三方，中国常用软件 | 静态数据后端)",
-            url: "https://jsdelivr.b-cdn.net/gh/openGiraffes/openGiraffes-store-db@gh-pages/data.json",
+            url: "https://fastly.jsdelivr.net/gh/openGiraffes/openGiraffes-store-db@gh-pages/data.json",
             type: "static"
         },
         "giraffe_store_ncd": {

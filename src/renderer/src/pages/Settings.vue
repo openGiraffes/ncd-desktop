@@ -70,7 +70,7 @@ export default {
 <script setup>
 const settings_form = reactive({
     locale: '',
-    kaistores: ['KaiStore (KaiStone backend)', 'BananaHackers Store', 'openGiraffes Store'],
+    kaistores: '',
     adb_path: '',
     python_path: ''
 })

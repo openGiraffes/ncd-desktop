@@ -17,7 +17,9 @@ export default {
         tools_packagezip_save_path: '保存位置',
         tools_packagezip_submit: '打包',
         settings_adb_path: 'ADB 目录',
-        settings_locale: '语言'
+        settings_locale: '语言',
+        settings_python_path: 'Python 目录',
+        settings_kaistores: '商店来源'
     },
     ncd_general: {
         back: '返回',

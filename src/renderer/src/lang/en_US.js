@@ -17,7 +17,9 @@ export default {
         tools_packagezip_save_path: 'Save Path',
         tools_packagezip_submit: 'Package',
         settings_adb_path: 'ADB Path',
-        settings_locale: 'Languages'
+        settings_locale: 'Languages',
+        settings_python_path: 'Python Path',
+        settings_kaistores: 'Store source'
     },
     ncd_general: {
         back: 'Back',

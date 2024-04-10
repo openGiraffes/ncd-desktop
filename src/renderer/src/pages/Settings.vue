@@ -37,8 +37,8 @@
 <script>
 import { ipcRenderer } from 'electron'
 import { onMounted } from 'vue'
-import i18n from '../../apis/vue-i18n'
-import * as stores from '../../apis/electron-store'
+import i18n from '../apis/vue-i18n'
+import * as stores from '../apis/electron-store'
 import locales_list from '../lang/locale_list'
 
 export default {
@@ -79,4 +79,4 @@ onMounted(async () => {
 
 <style scoped>
 
-</style>
+</style>../../../apis/vue-i18n../apis/vue-i18n../../../main/electron-store

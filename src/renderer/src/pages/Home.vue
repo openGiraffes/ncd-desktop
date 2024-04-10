@@ -6,7 +6,7 @@
                 <h1>Nine-colored Deer</h1>
                 <div class="buttons-project">
                     <div class="button-create-project">
-                        <el-button type="primary">{{ $t('ncd_ui.home_create_project') }}</el-button>
+                        <el-button type="primary" @click="click_filepath()">{{ $t('ncd_ui.home_create_project') }}</el-button>
                     </div>
                     <div class="button-open-project">
                         <el-button>{{ $t('ncd_ui.home_open_project') }}</el-button>
@@ -22,8 +22,26 @@
 </template>
 
 <script>
+
+import { ipcRenderer } from 'electron'
 export default {
     name: 'HomePage'
+}
+</script>
+
+<script setup>
+function click_filepath() {
+    const result = ipcRenderer.invoke('dialog:openFile');
+    result.then((res) => {
+        if(res !== undefined){
+            ipcRenderer.send('request-file-paths', res);  
+            ipcRenderer.on('file-paths', (event, filePaths) => {
+                console.log(filePaths);
+            });
+        } else {
+            return
+        }
+    })
 }
 </script>
 

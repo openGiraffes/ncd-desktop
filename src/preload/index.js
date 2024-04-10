@@ -1,8 +1,8 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
-import { electron_store_init_preload } from '../apis/electron-store'
-import { fs_init_preload } from '../apis/fs'
+import { electron_store_init_preload } from '../main/electron-store'
+import { fs_init_preload } from '../main/fs'
 
 // Custom APIs for renderer
 const api = {}

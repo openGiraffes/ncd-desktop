@@ -1,37 +1,11 @@
 import { type Files } from 'monaco-tree-editor'
-import * as fs from '../../apis/fs'
+import * as fs from '../apis/fs'
+import { get_all_filepaths } from '../apis/get-all-file-paths'
 
 const fileSeparator = '\\'
-let responseFiles: Files = {
-    'D:\\TestMonaco\\application': {
-        isFolder: true
-    },
-    'D:\\TestMonaco\\application\\css': {
-        isFolder: true
-    },
-    'D:\\TestMonaco\\application\\img': {
-        isFolder: true
-    },
-    'D:\\TestMonaco\\application\\js': {
-        isFolder: true
-    },
-    'D:\\TestMonaco\\application\\index.html': {
-        isFile: true,
-        content: ''
-    },
-    'D:\\TestMonaco\\application\\manifest.webapp': {
-        isFile: true,
-        content: ''
-    },
-    'D:\\TestMonaco\\metadata.json': {
-        isFile: true,
-        content: ''
-    },
-    'D:\\TestMonaco\\README.md': {
-        isFile: true,
-        content: ''
-    }
-}
+let filePath = "C:\\Users\\LiarOnce\\Desktop\\bilibili_kaios-main"
+let responseFiles = get_all_filepaths(filePath)
+console.log(responseFiles)
 
 export const delay = async (maxMs = 3000) => {
     return new Promise<void>((resolve) => {
@@ -55,7 +29,7 @@ export const createOrSaveFile = async (path: string, content: string) => {
     } else {
         responseFiles[path] = {
             isFile: true,
-            content: await fs.readFileSync(path)
+            content
         }
         console.log(path)
     }

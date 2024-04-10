@@ -23,6 +23,7 @@ export let getReplacer = () => {
         let electronModules = [
             // 'clipboard',
             'ipcRenderer',
+            'ipcMain',
             // 'nativeImage',
             // 'shell',
             // 'webFrame',

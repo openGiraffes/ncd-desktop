@@ -5,8 +5,8 @@ Store.initRenderer()
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
-import { electron_store_init_main } from '../apis/electron-store'
-import { fs_init_main } from '../apis/fs'
+import { electron_store_init_main } from './electron-store'
+import { fs_init_ready } from './fs'
 
 let mainWindow = null
 
@@ -36,6 +36,8 @@ function createWindow() {
         return { action: 'deny' }
     })
 
+    mainWindow.webContents.send('file-paths', "main");
+
     if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
     } else {
@@ -60,7 +62,7 @@ app.whenReady().then(() => {
     ipcMain.handle('dialog:openFile', handleFileOpen)
 
     electron_store_init_main()
-    fs_init_main()
+    fs_init_ready()
     
     createWindow()
 

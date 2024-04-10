@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './routes'
-import i18n from '../apis/vue-i18n'
+import i18n from './apis/vue-i18n'
 import * as ncd_monaco from './monaco-editor-main'
 
 import { install as VueMonacoEditorPlugin } from '@guolao/vue-monaco-editor'

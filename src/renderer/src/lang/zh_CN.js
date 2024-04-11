@@ -19,7 +19,8 @@ export default {
         settings_adb_path: 'ADB 目录',
         settings_locale: '语言',
         settings_python_path: 'Python 目录',
-        settings_kaistores: '商店来源'
+        settings_kaistores: '商店来源',
+        settings_download_path: '下载路径'
     },
     ncd_general: {
         back: '返回',

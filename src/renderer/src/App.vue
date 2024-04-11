@@ -1,7 +1,7 @@
 <template>
     <el-container style="height: 100%">
         <Sidebar></Sidebar>
-        <el-main>
+        <el-main style="flex-basis: min-content!important;">
             <router-view v-slot="{ Component, route }">
                 <keep-alive>
                     <component :is="Component" v-if="route.meta.keepAlive" :key="route.path" />

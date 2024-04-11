@@ -19,7 +19,8 @@ export default {
         settings_adb_path: 'ADB Path',
         settings_locale: 'Languages',
         settings_python_path: 'Python Path',
-        settings_kaistores: 'Store source'
+        settings_kaistores: 'Store source',
+        settings_download_path: 'Download Path'
     },
     ncd_general: {
         back: 'Back',

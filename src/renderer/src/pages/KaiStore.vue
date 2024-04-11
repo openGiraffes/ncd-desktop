@@ -21,7 +21,8 @@
                         </el-card>
                     </el-col>
                 </el-row>
-                <AppDialog ref="app_dialog_visible" :appdata="store_info"></AppDialog>
+                <!-- <AppDialog ref="app_dialog_visible" :app_data="store_info"></AppDialog> -->
+                <AppDialog ref="app_dialog_visible"></AppDialog>
             </el-main>
         </el-container>
     </div>
@@ -73,12 +74,14 @@ export default {
 
 <script setup>
 const app_dialog_visible = ref(null)
-let store_info = {}
+// let store_info = reactive({})
 function open_store_app_info(appdata) {
-    // console.log(appdata)
-    store_info = reactive(appdata)
+    // store_info = reactive(appdata)
+    localStorage.setItem("app_data_cache", JSON.stringify(appdata))
+    // console.log(store_info)
     app_dialog_visible.value.show_dialog = true
 }
+
 </script>
 
 <style scoped>

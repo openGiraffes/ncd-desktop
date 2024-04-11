@@ -27,6 +27,13 @@ export default {
             fulldesc: "openGiraffes Store (第三方，中国常用软件 | NCD 后端)",
             url: "",
             type: "request"
+        },
+        "custom_store_static": {
+            code: "custom_store_static",
+            desc: "Custom Store (Static)",
+            fulldesc: "自定义测试源 (静态数据后端)",
+            url: "http://localhost:8080/data.json",
+            type: "static"
         }
     }
 }

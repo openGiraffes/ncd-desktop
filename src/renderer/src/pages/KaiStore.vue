@@ -4,46 +4,50 @@
             <el-header></el-header>
             <el-main>
                 <el-row :gutter="20">
-                    <el-col v-for="(app, index) in store_data.apps" :key="app[index]" 
+                    <el-col v-for="(kaios_app, index) in store_data.apps" :key="kaios_app[index]" 
                         :xs="24" :sm="12" :md="8" :lg="6" :xl="4"
                     >
                         <el-card class="ncd-store-card" body-class="ncd-store-card-body">
                             <template #header>
-                                <div class="ncd-store-card-header"><span>{{ app.name }}</span></div>
+                                <div class="ncd-store-card-header"><span>{{ kaios_app.name }}</span></div>
                             </template>
                             <template #default>
-                                <img :src="app.icon" alt="" width="60" height="60">
-                                <p class="ncd-store-apps-desc">{{ app.description }}</p>
+                                <img :src="kaios_app.icon" alt="" width="60" height="60">
+                                <p class="ncd-store-apps-desc">{{ kaios_app.description }}</p>
                             </template>
                             <template #footer>
-                                <el-button plain @click="ncd_store_apps_dialog = true">应用信息</el-button>
+                                <el-button plain @click="open_store_app_info(kaios_app)">应用信息</el-button>
                             </template>
                         </el-card>
                     </el-col>
                 </el-row>
-                <el-dialog v-model="ncd_store_apps_dialog" title="Shipping address">
-                    <main>container</main>
-                    <template #footer>
-                        <span class="dialog-footer">
-                            <el-button @click="ncd_store_apps_dialog = false">Cancel</el-button>
-                            <el-button type="primary" @click="ncd_store_apps_dialog = false"> Confirm </el-button>
-                        </span>
-                    </template>
-                </el-dialog>
+                <AppDialog ref="app_dialog_visible" :appdata="store_info"></AppDialog>
             </el-main>
         </el-container>
     </div>
 </template>
+
 <script>
 import { ipcRenderer } from 'electron'
 import axios from 'axios'
+import { ref, reactive } from 'vue'
 import * as stores from '../apis/electron-store'
 import kaistore_list from '../lists/kaistore_list'
+
+import AppDialog from '../components/AppDialog.vue'
+
 export default {
     name: 'KaiStorePage',
+    components: { AppDialog },
+    props: {
+        visible: {
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
-            store_data: {},
+            store_data: {}
         }
     },
     created() {
@@ -66,8 +70,15 @@ export default {
     }
 }
 </script>
+
 <script setup>
-let ncd_store_apps_dialog = ref(false)
+const app_dialog_visible = ref(null)
+let store_info = {}
+function open_store_app_info(appdata) {
+    // console.log(appdata)
+    store_info = reactive(appdata)
+    app_dialog_visible.value.show_dialog = true
+}
 </script>
 
 <style scoped>

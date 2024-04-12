@@ -7,6 +7,7 @@ import icon from '../../resources/icon.png?asset'
 
 import { electron_store_init_main } from './electron-store'
 import { fs_init_ready } from './fs'
+import { child_process_init_main } from './child-process'
 
 let mainWindow = null
 
@@ -63,6 +64,7 @@ app.whenReady().then(() => {
 
     electron_store_init_main()
     fs_init_ready()
+    child_process_init_main()
     
     createWindow()
 

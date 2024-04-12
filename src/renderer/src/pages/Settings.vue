@@ -47,6 +47,13 @@
                                 </template>
                             </el-input>
                         </el-form-item>
+                        <el-form-item :label="$t('ncd_ui.settings_kailive_path')">
+                            <el-input v-model="settings_form.kailive_path">
+                                <template #suffix>
+                                    <el-link type="primary" @click="set_kailive_path">{{ $t('ncd_general.select_path') }}</el-link>
+                                </template>
+                            </el-input>
+                        </el-form-item>
                         <el-form-item :label="$t('ncd_ui.settings_download_path')">
                             <el-input v-model="settings_form.download_path">
                                 <template #suffix>
@@ -80,6 +87,7 @@ const settings_form = reactive({
     kaistores: '',
     adb_path: '',
     python_path: '',
+    kailive_path: '',
     download_path: ''
 })
 
@@ -102,6 +110,19 @@ const set_python_path = () => {
         if(res !== undefined){
             settings_form.python_path = res
             stores.set_keys('python_path', res)
+        } else {
+            return
+        }
+        
+    })
+}
+
+const set_kailive_path = () => {
+    const result = ipcRenderer.invoke('dialog:openFile');
+    result.then((res) => {
+        if(res !== undefined){
+            settings_form.kailive_path = res
+            stores.set_keys('kailive_path', res)
         } else {
             return
         }
@@ -136,6 +157,7 @@ const set_kaistores = async (st) => {
 onMounted(async () => {
     settings_form.adb_path = await stores.get_keys('adb_path')
     settings_form.python_path = await stores.get_keys('python_path')
+    settings_form.kailive_path = await stores.get_keys('kailive_path')
     settings_form.download_path = await stores.get_keys('download_path')
     settings_form.locale = await stores.get_keys('locale')
     settings_form.kaistores = await stores.get_keys('kaistores')

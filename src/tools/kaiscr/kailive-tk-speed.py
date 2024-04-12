@@ -8,7 +8,8 @@ from PIL import Image
 from PIL import ImageTk
 from io import BytesIO
 
-os.system('adb root && adb forward tcp:6000 localfilesystem:/data/local/debugger-socket')
+# os.system('adb root && adb forward tcp:6000 localfilesystem:/data/local/debugger-socket')
+os.system('adb forward tcp:6000 localfilesystem:/data/local/debugger-socket && adb connect localhost:6000')
 
 root = tkinter.Tk()
 root.title('KaiLive')

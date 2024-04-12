@@ -35,7 +35,7 @@ export default [
         }
     },
     {
-        path: '/debug',
+        path: '/debugger',
         name: 'DebugPage',
         component: Debug,
         meta: {

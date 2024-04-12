@@ -3,6 +3,7 @@
         <div class="ncd-app-fullinfo">
             <div class="ncd-app-logo"><img :src="app_data.icon" alt=""></div>
             <div class="ncd-app-fulldesc"><p>{{ app_data.description }}</p></div>
+           
             <el-descriptions
                 :column="1"
                 :size="size"
@@ -28,7 +29,7 @@
                     跟踪：{{ app_data.has_tracking }}
                 </el-descriptions-item>
                 <el-descriptions-item label="许可证">{{ app_data.license }}</el-descriptions-item>
-                <el-descriptions-item label="网站"><a @click="app_data_website_click(app_data.website)" :href="app_data.website">{{ app_data.website }}</a></el-descriptions-item>
+                <el-descriptions-item label="网站">{{ app_data.website }}</el-descriptions-item>
             </el-descriptions>
         </div>
         <template #footer>
@@ -48,28 +49,25 @@ export default {
     name: 'AppDialog',
     data() {
         return {
-            
+            app_data: ''
         }
+    },
+    created(){
+        // Difficult to understand passing parameters between components in Vue
+        // So using LocalStorage as a cache (lll￢ω￢)
+        let that = this //重定向 this 位置
+        window.addEventListener('setCacheEvent', function (e) {
+            if (e.key === 'app_data_cache') {
+                that.app_data = JSON.parse(e.newValue)
+                // console.log(that.app_data)
+            }
+        })
     }
 }
 </script>
 
 <script setup>
 let show_dialog = ref(false)
-//let app_data = defineProps(['app_data'])
-
-// Difficult to understand passing parameters between components in Vue
-// So using LocalStorage as a cache (lll￢ω￢)
-let app_data = localStorage.getItem("app_data_cache")
-window.addEventListener('setCacheEvent', function (e) {
-    if (e.key === 'app_data_cache') {
-        app_data = JSON.parse(e.newValue)
-        // console.log(app_data)
-    }
-})
-function app_data_website_click(link) {
-    shell.openExternal(link)
-}
 
 defineExpose({
     show_dialog

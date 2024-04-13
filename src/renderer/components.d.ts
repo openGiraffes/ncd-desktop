@@ -35,6 +35,7 @@ declare module 'vue' {
     IEpCircleCheckFilled: typeof import('~icons/ep/circle-check-filled')['default']
     IEpFiles: typeof import('~icons/ep/files')['default']
     IEpHomeFilled: typeof import('~icons/ep/home-filled')['default']
+    IEpRefresh: typeof import('~icons/ep/refresh')['default']
     IEpSetting: typeof import('~icons/ep/setting')['default']
     IEpShoppingBag: typeof import('~icons/ep/shopping-bag')['default']
     IEpTools: typeof import('~icons/ep/tools')['default']

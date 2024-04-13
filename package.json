@@ -23,6 +23,7 @@
     "@electron/remote": "^2.1.2",
     "@element-plus/icons-vue": "^2.3.1",
     "@guolao/vue-monaco-editor": "^1.5.1",
+    "@opengiraffes/firefox-client": "^0.4.0",
     "axios": "^1.6.8",
     "electron-store": "^8.2.0",
     "electron-updater": "^6.1.7",

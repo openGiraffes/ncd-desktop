@@ -5,7 +5,7 @@
                 <el-button primary @click="open_kailive()">启动 KaiLive</el-button>
                 <el-button primary @click="open_webide_xul()">启动 WebIDE (适用于 KaiOS 2.5.x)</el-button>
             </el-header>
-            <div style="overflow: auto; border: 2px solid black; height: 200px">
+            <!-- <div style="overflow: auto; border: 2px solid black; height: 200px">
                 <p
                     class="process-output"
                     v-for="(out, index) in process_output.kailive_stdout_array"
@@ -13,7 +13,13 @@
                 >
                     {{ out[index] }}
                 </p>
-            </div>
+            </div> -->
+            <el-main>
+                <h2>设备信息<el-button><el-icon><i-ep-refresh /></el-icon></el-button></h2>
+                <el-descriptions>
+                    
+                </el-descriptions>
+            </el-main>
         </div>
         <div class="ncd-device-info"></div>
     </div>
@@ -28,9 +34,14 @@ import { ipcRenderer } from 'electron'
 import * as stores from '../apis/electron-store'
 import { spawn_command } from '../apis/child-process'
 import child_process from 'child_process'
+import FirefoxClient from '@opengiraffes/firefox-client'
+
+let client = new FirefoxClient()
+
 let process_output = reactive({
     kailive_stdout: '',
-    kailive_stdout_array: []
+    kailive_stdout_array: [],
+    kaios_device_info: {}
 })
 async function open_kailive() {
     let python_path = (await stores.get_keys('python_path')) + '\\python.exe'

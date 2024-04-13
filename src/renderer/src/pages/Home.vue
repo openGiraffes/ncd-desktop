@@ -31,7 +31,7 @@ export default {
 
 <script setup>
 function click_filepath() {
-    const result = ipcRenderer.invoke('dialog:openFile');
+    const result = ipcRenderer.invoke('dialog:openFolder');
     result.then((res) => {
         if(res !== undefined){
             ipcRenderer.send('request-file-paths', res);  

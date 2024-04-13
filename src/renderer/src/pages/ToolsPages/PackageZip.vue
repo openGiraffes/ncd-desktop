@@ -60,14 +60,14 @@ const getModelValue = () => {
 }
 
 const get_project_folder = () => {
-    const result = ipcRenderer.invoke('dialog:openFile');
+    const result = ipcRenderer.invoke('dialog:openFolder');
     result.then(res => {
         package_form.project_path = res
     })
 }
 
 const get_save_folder = () => {
-    const result = ipcRenderer.invoke('dialog:openFile');
+    const result = ipcRenderer.invoke('dialog:openFolder');
     result.then(res => {
         package_form.package_savepath = res
     })

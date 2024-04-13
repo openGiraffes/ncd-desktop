@@ -61,6 +61,20 @@
                                 </template>
                             </el-input>
                         </el-form-item>
+                        <el-form-item :label="$t('ncd_ui.settings_firefox_xul_path')">
+                            <el-input v-model="settings_form.firefox_xul_path">
+                                <template #suffix>
+                                    <el-link type="primary" @click="set_firefox_xul_path">{{ $t('ncd_general.select_path') }}</el-link>
+                                </template>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item :label="$t('ncd_ui.settings_firefox_quantum_path')">
+                            <el-input v-model="settings_form.firefox_quantum_path">
+                                <template #suffix>
+                                    <el-link type="primary" @click="set_firefox_quantum_path">{{ $t('ncd_general.select_path') }}</el-link>
+                                </template>
+                            </el-input>
+                        </el-form-item>
                     </el-form>
                 </div>
             </el-main>
@@ -88,11 +102,13 @@ const settings_form = reactive({
     adb_path: '',
     python_path: '',
     kailive_path: '',
-    download_path: ''
+    download_path: '',
+    firefox_xul_path: '',
+    firefox_quantum_path: ''
 })
 
 const set_adb_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFile');
+    const result = ipcRenderer.invoke('dialog:openFolder');
     result.then((res) => {
         if(res !== undefined){
             settings_form.adb_path = res
@@ -105,7 +121,7 @@ const set_adb_path = () => {
 }
 
 const set_python_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFile');
+    const result = ipcRenderer.invoke('dialog:openFolder');
     result.then((res) => {
         if(res !== undefined){
             settings_form.python_path = res
@@ -118,7 +134,7 @@ const set_python_path = () => {
 }
 
 const set_kailive_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFile');
+    const result = ipcRenderer.invoke('dialog:openFolder');
     result.then((res) => {
         if(res !== undefined){
             settings_form.kailive_path = res
@@ -131,11 +147,39 @@ const set_kailive_path = () => {
 }
 
 const set_download_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFile');
+    const result = ipcRenderer.invoke('dialog:openFolder');
     result.then((res) => {
         if(res !== undefined){
             settings_form.download_path = res
             stores.set_keys('download_path', res)
+        } else {
+            return
+        }
+        
+    })
+}
+
+// firefox_xul_path works with Firefox 59.0 and earlier versions,
+// as well as browsers based on older versions (e.g. Waterfox Classic).
+const set_firefox_xul_path = () => {
+    const result = ipcRenderer.invoke('dialog:openFile');
+    result.then((res) => {
+        if(res !== undefined){
+            settings_form.firefox_xul_path = res
+            stores.set_keys('firefox_xul_path', res)
+        } else {
+            return
+        }
+        
+    })
+}
+// firefox_quantum_path works with Firefox 59.0 and newer versions.
+const set_firefox_quantum_path = () => {
+    const result = ipcRenderer.invoke('dialog:openFile');
+    result.then((res) => {
+        if(res !== undefined){
+            settings_form.firefox_quantum_path = res
+            stores.set_keys('firefox_quantum_path', res)
         } else {
             return
         }
@@ -159,6 +203,8 @@ onMounted(async () => {
     settings_form.python_path = await stores.get_keys('python_path')
     settings_form.kailive_path = await stores.get_keys('kailive_path')
     settings_form.download_path = await stores.get_keys('download_path')
+    settings_form.firefox_xul_path = await stores.get_keys('firefox_xul_path')
+    settings_form.firefox_quantum_path = await stores.get_keys('firefox_quantum_path')
     settings_form.locale = await stores.get_keys('locale')
     settings_form.kaistores = await stores.get_keys('kaistores')
 })

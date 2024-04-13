@@ -61,6 +61,7 @@ app.whenReady().then(() => {
 
     ipcMain.on('ping', () => console.log('pong'))
     ipcMain.handle('dialog:openFile', handleFileOpen)
+    ipcMain.handle('dialog:openFolder', handleFolderOpen)
 
     electron_store_init_main()
     fs_init_ready()
@@ -83,8 +84,7 @@ app.on('window-all-closed', () => {
 
 async function handleFileOpen() {
     const options = {
-        title: 'Select a Folder',
-        properties: ['openDirectory']
+        title: 'Select program'
     }
     const { canceled, filePaths } = await dialog.showOpenDialog(options)
     if (canceled) {
@@ -93,5 +93,21 @@ async function handleFileOpen() {
     } else {
         console.log(2, filePaths)
         return filePaths[0]
+    }
+}
+
+
+async function handleFolderOpen() {
+    const options = {
+        title: 'Select a Folder',
+        properties: ['openDirectory']
+    }
+    const { canceled, folderPaths } = await dialog.showOpenDialog(options)
+    if (canceled) {
+        console.log(1)
+        return
+    } else {
+        console.log(2, folderPaths)
+        return folderPaths[0]
     }
 }

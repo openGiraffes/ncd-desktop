@@ -1,7 +1,10 @@
 <template>
     <div class="ncd-debug">
         <div class="ncd-kaiscr-controller">
-            <el-button primary @click="open_kailive()">启动KaiLive</el-button>
+            <el-header>
+                <el-button primary @click="open_kailive()">启动 KaiLive</el-button>
+                <el-button primary @click="open_webide_xul()">启动 WebIDE (适用于 KaiOS 2.5.x)</el-button>
+            </el-header>
             <div style="overflow: auto; border: 2px solid black; height: 200px">
                 <p
                     class="process-output"
@@ -23,7 +26,8 @@ export default {
 <script setup>
 import { ipcRenderer } from 'electron'
 import * as stores from '../apis/electron-store'
-import { spawn_command } from '../apis/child-process';
+import { spawn_command } from '../apis/child-process'
+import child_process from 'child_process'
 let process_output = reactive({
     kailive_stdout: '',
     kailive_stdout_array: []
@@ -39,6 +43,12 @@ async function open_kailive() {
             process_output.kailive_stdout = result.stdout
         }
     })
+}
+async function open_webide_xul() {
+    let firefox_path = (await stores.get_keys('firefox_xul_path'))
+    // Open WebIDE with command: firefox -chrome chrome://webide/content/webide.xul
+    // Works fine with Waterfox Classic 2022.11
+    child_process.spawn(firefox_path, ["-chrome", "chrome://webide/content/webide.xul"])
 }
 </script>
 

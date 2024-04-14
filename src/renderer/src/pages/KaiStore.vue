@@ -1,7 +1,10 @@
 <template>
     <div class="ncd-kaistore">
         <el-container>
-            <el-header></el-header>
+            <el-header>
+                <h1 v-if="is_loaded == true">KaiOS 应用商店</h1>
+                <h1 v-else>加载失败</h1>
+            </el-header>
             <el-main>
                 <el-row :gutter="20">
                     <el-col
@@ -58,7 +61,8 @@ export default {
     },
     data() {
         return {
-            store_data: {}
+            store_data: {},
+            is_loaded: false
         }
     },
     created() {
@@ -69,10 +73,10 @@ export default {
             let store_channel = await stores.get_keys('kaistores')
             let responseURL = kaistore_list.kaistores[store_channel].url
             try {
-                axios
-                    .get(responseURL)
+                axios.get(responseURL)
                     .then((result) => {
                         this.store_data = result.data
+                        this.is_loaded = true
                     })
                     .catch((error) => {
                         console.log(error)

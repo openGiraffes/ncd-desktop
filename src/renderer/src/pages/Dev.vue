@@ -1,20 +1,30 @@
 <template>
-    <div class="ncd-monaco-editor">
-        <MonacoTreeEditor
-            :font-size="14"
-            :files="files"
-            :sider-min-width="240"
-            filelist-title="文件列表"
-            @reload="handleReload"
-            @new-file="handleNewFile"
-            @new-folder="handleNewFolder"
-            @save-file="handleSaveFile"
-            @delete-file="handleDeleteFile"
-            @delete-folder="handleDeleteFolder"
-            @rename-file="handleRename"
-            @rename-folder="handleRename"
-            language="zh-CN"
-        ></MonacoTreeEditor>
+    <div class="ncd-monaco-dev">
+        <el-header class="ncd-monaco-toolbar">
+            <el-button>
+                <i-ep-video-play />运行
+            </el-button>
+            <el-button>
+                <i-ep-refresh-right />重新部署
+            </el-button>
+        </el-header>
+        <el-main class="ncd-monaco-editor">
+            <MonacoTreeEditor
+                :font-size="14"
+                :files="files"
+                :sider-min-width="240"
+                filelist-title="文件列表"
+                @reload="handleReload"
+                @new-file="handleNewFile"
+                @new-folder="handleNewFolder"
+                @save-file="handleSaveFile"
+                @delete-file="handleDeleteFile"
+                @delete-folder="handleDeleteFolder"
+                @rename-file="handleRename"
+                @rename-folder="handleRename"
+                language="zh-CN"
+            ></MonacoTreeEditor>
+        </el-main>
     </div>
 </template>
 
@@ -125,9 +135,18 @@ const handleRename = (
 </script>
 
 <style scoped>
-.ncd-monaco-editor {
-    /* height: 90vh; */
+.ncd-monaco-dev {
     height: 100%;
-    text-align: left !important;
+    padding: 0!important;
+}
+.ncd-monaco-toolbar {
+    text-align: right;
+    height: auto!important;
+    padding: 0!important;
+}
+.ncd-monaco-editor {
+    height: 96%;
+    padding: 0!important;
+    text-align: left!important;
 }
 </style>

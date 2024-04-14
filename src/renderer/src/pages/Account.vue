@@ -18,14 +18,25 @@
                     </div>
                 </div>
             </el-aside>
+            <el-main>
+                <el-descriptions v-if="isLogin" :column="1" :size="size" border>
+                    <el-descriptions-item label="用户ID"></el-descriptions-item>
+                    <el-descriptions-item label="用户名"></el-descriptions-item>
+                    <el-descriptions-item label="邮箱"></el-descriptions-item>
+                    <el-descriptions-item label="最后登录时间"></el-descriptions-item>
+                    <el-descriptions-item label="用户等级"></el-descriptions-item>
+                </el-descriptions>
+            </el-main>
         </el-container>
     </div>
 </template>
 
 <script>
 import default_avatar from '../assets/default_avatar.png'
+import axios from 'axios'
 export default {
-    name: 'AccountPage'
+    name: 'AccountPage',
+    data(){}
 }
 </script>
 

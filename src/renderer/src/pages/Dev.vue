@@ -35,25 +35,13 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref, shallowRef } from 'vue'
-
+import { ref, onMounted } from 'vue'
 import { Editor as MonacoTreeEditor, Files } from 'monaco-tree-editor'
+import { useRouter, useRoute } from 'vue-router'
 import 'monaco-tree-editor/index.css'
 import * as server from '../mocks/tree-mock-server'
 
-// const MONACO_EDITOR_OPTIONS = {
-//     automaticLayout: true,
-//     formatOnType: true,
-//     formatOnPaste: true,
-// }
-
-// const code = ref('console.log("test")')
-// const editorRef = shallowRef()
-// const handleMount = editor => (editorRef.value = editor)
-
-// function formatCode() {
-//     editorRef.value?.getAction('editor.action.formatDocument').run()
-// }
+const router = useRouter()
 
 // Monaco tree Start
 const files = ref<Files>()
@@ -132,6 +120,9 @@ const handleRename = (
         })
 }
 // Monaco tree end
+router.afterEach(() => {
+    handleReload() // Refresh list
+})
 </script>
 
 <style scoped>

@@ -13,4 +13,20 @@ function writeFileSync(path, content) {
     ipcRenderer.send('fs-writefilesync', path, content)
 }
 
-export { readFileSync, writeFileSync }
+function mkdirSync(path, content) {
+    ipcRenderer.send('fs-mkdirsync', path)
+}
+
+function renameSync(path, newPath) {
+    ipcRenderer.send('fs-renamesync', path, newPath)
+}
+
+function rmSync(path) {
+    ipcRenderer.send('fs-rmsync', path)
+}
+
+function rmdirSync(path) {
+    ipcRenderer.send('fs-rmdirsync', path)
+}
+
+export { readFileSync, writeFileSync, mkdirSync, renameSync, rmSync, rmdirSync }

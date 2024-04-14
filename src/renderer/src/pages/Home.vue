@@ -6,11 +6,11 @@
                 <h1>Nine-colored Deer</h1>
                 <div class="buttons-project">
                     <div class="button-create-project">
-                        <el-button type="primary" @click="click_filepath()">{{
+                        <el-button type="primary">{{
                             $t('ncd_ui.home_create_project')
                         }}</el-button>
                     </div>
-                    <div class="button-open-project">
+                    <div class="button-open-project" @click="click_filepath()">
                         <el-button>{{ $t('ncd_ui.home_open_project') }}</el-button>
                     </div>
                 </div>
@@ -18,6 +18,7 @@
             <el-main>
                 <h1>{{ $t('ncd_ui.home_recent_project') }}</h1>
                 <p>{{ $t('ncd_ui.home_recent_project_desc') }}</p>
+                <a href="#"></a>
             </el-main>
         </el-container>
     </div>
@@ -25,20 +26,22 @@
 
 <script>
 import { ipcRenderer } from 'electron'
+import { useRouter, useRoute } from 'vue-router'
+import * as server from '../mocks/tree-mock-server'
 export default {
     name: 'HomePage'
 }
 </script>
 
 <script setup>
+const router = useRouter()
+
 function click_filepath() {
-    const result = ipcRenderer.invoke('dialog:openFolder')
-    result.then((res) => {
+    const result = ipcRenderer.invoke('dialog:openProject')
+    result.then(async (res) => {
         if (res !== undefined) {
-            ipcRenderer.send('request-file-paths', res)
-            ipcRenderer.on('file-paths', (event, filePaths) => {
-                console.log(filePaths)
-            })
+            server.getFiles(res.replaceAll('\\', '\\\\'))
+            await router.push({ path: 'dev', query: { refresh: true }})
         } else {
             return
         }

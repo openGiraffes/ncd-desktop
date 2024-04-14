@@ -1,10 +1,28 @@
 import { type Files } from 'monaco-tree-editor'
 import * as fs from '../apis/fs'
+import { ipcRenderer } from 'electron'
 import { get_all_filepaths } from '../apis/get-all-file-paths'
 
 const fileSeparator = '\\'
-let filePath = 'C:\\Users\\LiarOnce\\Desktop\\bilibili_kaios-main'
-let responseFiles = get_all_filepaths(filePath)
+// console.log(filePath)
+let responseFiles
+export const getFiles = async (filePath) => {
+    if (filePath) {
+        console.log(filePath)
+        responseFiles = await get_all_filepaths(filePath)
+    } else {
+        responseFiles = {
+            "main": {
+                isFolder: true
+            },
+            "index.js": {
+                isFile: true,
+                content: ''
+            }
+        }
+    }
+}
+
 // console.log(responseFiles)
 
 export const delay = async (maxMs = 3000) => {
@@ -43,6 +61,7 @@ export const newFile = async (path: string) => {
         isFile: true,
         content: ''
     }
+    await fs.writeFileSync(path, '')
 }
 export const newFolder = async (path: string) => {
     await delay()
@@ -52,6 +71,7 @@ export const newFolder = async (path: string) => {
     responseFiles[path] = {
         isFolder: true
     }
+    await fs.mkdirSync(path)
 }
 export const rename = async (path: string, newPath: string) => {
     await delay()
@@ -61,6 +81,7 @@ export const rename = async (path: string, newPath: string) => {
         throw new Error(`rename: target file/folder name [ ${newPath} ] already exists!`)
     }
     responseFiles[newPath] = responseFiles[path]
+    await fs.renameSync(path, newPath)
     if (path !== newPath) {
         delete responseFiles[path]
     }
@@ -71,6 +92,7 @@ export const deleteFile = async (path: string) => {
     if (!responseFiles[path]) {
         throw new Error(`delete: file name [ ${path} ] not exists!`)
     }
+    await fs.rmSync(path)
     delete responseFiles[path]
     return true
 }

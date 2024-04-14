@@ -1,5 +1,4 @@
 import Home from './pages/Home.vue'
-import Dev from './pages/Dev.vue'
 import Debug from './pages/Debug.vue'
 import KaiStore from './pages/KaiStore.vue'
 import Settings from './pages/Settings.vue'
@@ -29,7 +28,7 @@ export default [
     {
         path: '/dev',
         name: 'DevPage',
-        component: Dev,
+        component: () => import('./pages/Dev.vue'), // need to lazy load
         meta: {
             keepAlive: true
         }

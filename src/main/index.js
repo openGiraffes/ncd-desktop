@@ -5,6 +5,7 @@ Store.initRenderer()
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
+import { file_controller_init_main } from './file-controller'
 import { electron_store_init_main } from './electron-store'
 import { fs_init_ready } from './fs'
 import { child_process_init_main } from './child-process'
@@ -39,6 +40,11 @@ function createWindow() {
     })
 
     mainWindow.webContents.send('file-paths', 'main')
+    mainWindow.on('close', () => {
+        mainWindow.webContents.executeJavaScript('localStorage.removeItem("project_files_cache")', true).then((result) => {
+            console.log("Clean project_cache successful.")
+        })
+    })
 
     if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
@@ -61,9 +67,8 @@ app.whenReady().then(() => {
     })
 
     ipcMain.on('ping', () => console.log('pong'))
-    ipcMain.handle('dialog:openFile', handleFileOpen)
-    ipcMain.handle('dialog:openFolder', handleFolderOpen)
-
+    
+    file_controller_init_main()
     electron_store_init_main()
     fs_init_ready()
     child_process_init_main()
@@ -83,33 +88,3 @@ app.on('window-all-closed', () => {
         app.quit()
     }
 })
-
-async function handleFileOpen() {
-    const options = {
-        title: 'Select program',
-        properties: ['openFile']
-    }
-    const { canceled, filePaths } = await dialog.showOpenDialog(options)
-    if (canceled) {
-        console.log(1)
-        return
-    } else {
-        console.log(2, filePaths)
-        return filePaths[0]
-    }
-}
-
-async function handleFolderOpen() {
-    const options = {
-        title: 'Select a Folder',
-        properties: ['openDirectory']
-    }
-    const { canceled, filePaths } = await dialog.showOpenDialog(options)
-    if (canceled) {
-        console.log(1)
-        return
-    } else {
-        console.log(2, filePaths)
-        return filePaths[0]
-    }
-}

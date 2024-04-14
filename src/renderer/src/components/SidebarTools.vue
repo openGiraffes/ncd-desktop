@@ -1,5 +1,11 @@
 <template>
-    <el-menu id="sidebar" default-active="/tools" class="ncd-menu-vertical" :collapse="false" router>
+    <el-menu
+        id="sidebar"
+        default-active="/tools"
+        class="ncd-menu-vertical"
+        :collapse="false"
+        router
+    >
         <el-menu-item-group>
             <el-menu-item index="/tools/packageZip">
                 <el-icon><i-ep-files /></el-icon>

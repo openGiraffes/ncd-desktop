@@ -26,6 +26,7 @@ export let getReplacer = () => {
             'ipcMain',
             // 'nativeImage',
             'shell',
+            'dialog',
             // 'webFrame',
             'remote'
         ].join(',')

@@ -1,31 +1,33 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Nine-colored Deer</title>
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="
+    <head>
+        <meta charset="UTF-8" />
+        <title>Nine-colored Deer</title>
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="
         default-src 'self' data:;
         script-src 'self' 'unsafe-eval';
         style-src 'self' 'unsafe-inline';
         img-src * 'self' data: content:;
         connect-src * blob:;
       "
-    />
-    <style>
-      html, body, #app {
-        height: 100%;
-      }
-      body {
-        margin: 0!important;
-      }
-    </style>
-  </head>
+        />
+        <style>
+            html,
+            body,
+            #app {
+                height: 100%;
+            }
+            body {
+                margin: 0 !important;
+            }
+        </style>
+    </head>
 
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    <body>
+        <div id="app"></div>
+        <script type="module" src="/src/main.js"></script>
+    </body>
 </html>

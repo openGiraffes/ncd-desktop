@@ -24,6 +24,6 @@ export default {
     },
     ncd_general: {
         back: 'Back',
-        select_path: 'Select path',
+        select_path: 'Select path'
     }
 }

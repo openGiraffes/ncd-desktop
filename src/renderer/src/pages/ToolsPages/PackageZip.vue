@@ -12,19 +12,26 @@
                 <div class="ncd-tools-package-form">
                     <el-form ref="formRef" :model="package_form" label-width="auto">
                         <el-form-item :label="$t('ncd_ui.tools_packagezip_radio')">
-                            <el-radio-group v-model="package_form.package_default" class="ncd-tools-package-selection"
-                                @change="getModelValue">
+                            <el-radio-group
+                                v-model="package_form.package_default"
+                                class="ncd-tools-package-selection"
+                                @change="getModelValue"
+                            >
                                 <el-radio :label="1">KaiStore</el-radio>
                                 <el-radio :label="2">OmniSD</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item :label="$t('ncd_ui.tools_packagezip_project_path')">
                             <el-input v-model="package_form.project_path" />
-                            <el-button type="primary" @click="get_project_folder">{{ $t('ncd_general.select_path') }}</el-button>
+                            <el-button type="primary" @click="get_project_folder">{{
+                                $t('ncd_general.select_path')
+                            }}</el-button>
                         </el-form-item>
                         <el-form-item :label="$t('ncd_ui.tools_packagezip_save_path')">
                             <el-input v-model="package_form.package_savepath" />
-                            <el-button type="primary" @click="get_save_folder">{{ $t('ncd_general.select_path') }}</el-button>
+                            <el-button type="primary" @click="get_save_folder">{{
+                                $t('ncd_general.select_path')
+                            }}</el-button>
                         </el-form-item>
                     </el-form>
                     <el-button type="primary" @click="submitPackage">
@@ -40,7 +47,7 @@
 import { ipcRenderer } from 'electron'
 export default {
     name: 'PackageZip',
-    created(){
+    created() {
         ipcRenderer.on('save-finished', function (event, filename) {
             console.log(filename)
         })
@@ -51,8 +58,8 @@ export default {
 <script setup>
 const package_form = reactive({
     package_default: 1,
-    project_path: "",
-    package_savepath: ""
+    project_path: '',
+    package_savepath: ''
 })
 
 const getModelValue = () => {
@@ -60,21 +67,21 @@ const getModelValue = () => {
 }
 
 const get_project_folder = () => {
-    const result = ipcRenderer.invoke('dialog:openFolder');
-    result.then(res => {
+    const result = ipcRenderer.invoke('dialog:openFolder')
+    result.then((res) => {
         package_form.project_path = res
     })
 }
 
 const get_save_folder = () => {
-    const result = ipcRenderer.invoke('dialog:openFolder');
-    result.then(res => {
+    const result = ipcRenderer.invoke('dialog:openFolder')
+    result.then((res) => {
         package_form.package_savepath = res
     })
 }
 
 const submitPackage = () => {
-    console.log("Packaged!")
+    console.log('Packaged!')
 }
 </script>
 

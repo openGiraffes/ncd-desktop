@@ -12,7 +12,5 @@ module.exports = {
         'vue/require-default-prop': 'off',
         'vue/multi-word-component-names': 'off'
     },
-    plugins: [
-        "babel-eslint"
-    ]
+    plugins: ['babel-eslint']
 }

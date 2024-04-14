@@ -24,6 +24,6 @@ export default {
     },
     ncd_general: {
         back: '返回',
-        select_path: '选择目录',
+        select_path: '选择目录'
     }
 }

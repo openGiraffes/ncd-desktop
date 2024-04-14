@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
- 
+import fs from 'fs'
+import path from 'path'
+
 function get_all_filepaths(dirPath) {
-    const itemsData = {};
+    const itemsData = {}
 
     function traverse_directory(currentPath) {
-        const items = fs.readdirSync(currentPath);
- 
+        const items = fs.readdirSync(currentPath)
+
         for (const item of items) {
-            const itemPath = path.join(currentPath, item);
-            const stat = fs.statSync(itemPath);
- 
+            const itemPath = path.join(currentPath, item)
+            const stat = fs.statSync(itemPath)
+
             if (stat.isFile()) {
                 itemsData[itemPath] = {
                     isFile: stat.isFile(),
@@ -19,15 +19,15 @@ function get_all_filepaths(dirPath) {
             }
             if (stat.isDirectory()) {
                 itemsData[itemPath] = {
-                    isFolder: stat.isDirectory(),
+                    isFolder: stat.isDirectory()
                 }
-                traverse_directory(itemPath);
+                traverse_directory(itemPath)
             }
         }
     }
- 
-    traverse_directory(dirPath);
-    return itemsData;
+
+    traverse_directory(dirPath)
+    return itemsData
 }
 
 export { get_all_filepaths }

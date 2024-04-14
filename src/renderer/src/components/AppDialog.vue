@@ -1,31 +1,39 @@
 <template>
     <el-dialog v-model="show_dialog" :title="app_data.name">
         <div class="ncd-app-fullinfo">
-            <div class="ncd-app-logo"><img :src="app_data.icon" alt=""></div>
-            <div class="ncd-app-fulldesc"><p>{{ app_data.description }}</p></div>
-           
-            <el-descriptions
-                :column="1"
-                :size="size"
-                border
-            >
+            <div class="ncd-app-logo"><img :src="app_data.icon" alt="" /></div>
+            <div class="ncd-app-fulldesc">
+                <p>{{ app_data.description }}</p>
+            </div>
+
+            <el-descriptions :column="1" :size="size" border>
                 <el-descriptions-item label="分类">
-                    <p class="app-data-array" v-for="(cat, index) in app_data.meta.categories">{{ cat }}</p>
+                    <p class="app-data-array" v-for="(cat, index) in app_data.meta.categories">
+                        {{ cat }}
+                    </p>
                 </el-descriptions-item>
                 <el-descriptions-item label="作者">
                     <p class="app-data-array" v-for="(aut, index) in app_data.author">{{ aut }}</p>
                 </el-descriptions-item>
                 <el-descriptions-item label="维护者">
-                    <p class="app-data-array" v-for="(maint, index) in app_data.maintainer">{{ maint }}</p>
+                    <p class="app-data-array" v-for="(maint, index) in app_data.maintainer">
+                        {{ maint }}
+                    </p>
                 </el-descriptions-item>
-                <el-descriptions-item label="依赖">{{ app_data.meta.dependencies }}</el-descriptions-item>
-                <el-descriptions-item label="版本">{{ app_data.download.version }}</el-descriptions-item>
+                <el-descriptions-item label="依赖">{{
+                    app_data.meta.dependencies
+                }}</el-descriptions-item>
+                <el-descriptions-item label="版本">{{
+                    app_data.download.version
+                }}</el-descriptions-item>
                 <el-descriptions-item label="类型">{{ app_data.type }}</el-descriptions-item>
                 <el-descriptions-item label="语言">
-                    <p class="app-data-array" v-for="(lang, index) in app_data.locales">{{ lang }}</p>
+                    <p class="app-data-array" v-for="(lang, index) in app_data.locales">
+                        {{ lang }}
+                    </p>
                 </el-descriptions-item>
                 <el-descriptions-item label="敏感特征">
-                    广告：{{ app_data.has_ads }} <br>
+                    广告：{{ app_data.has_ads }} <br />
                     跟踪：{{ app_data.has_tracking }}
                 </el-descriptions-item>
                 <el-descriptions-item label="许可证">{{ app_data.license }}</el-descriptions-item>
@@ -44,7 +52,7 @@
 
 <script>
 import { ref, onMounted, defineProps, defineExpose } from 'vue'
-import { shell } from 'electron';
+import { shell } from 'electron'
 export default {
     name: 'AppDialog',
     data() {
@@ -52,7 +60,7 @@ export default {
             app_data: ''
         }
     },
-    created(){
+    created() {
         // Difficult to understand passing parameters between components in Vue
         // So using LocalStorage as a cache (lll￢ω￢)
         let that = this //重定向 this 位置
@@ -75,7 +83,7 @@ defineExpose({
 </script>
 
 <style scoped>
-.app-data-array{
-    margin: 0
+.app-data-array {
+    margin: 0;
 }
 </style>

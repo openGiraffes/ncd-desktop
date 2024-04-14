@@ -2,7 +2,9 @@ import { ipcRenderer } from 'electron'
 let res = ''
 
 const check_keys = (key) => {
-    ipcRenderer.invoke('electron-store-has', key).then((result)  => { res = result })
+    ipcRenderer.invoke('electron-store-has', key).then((result) => {
+        res = result
+    })
     return res
 }
 

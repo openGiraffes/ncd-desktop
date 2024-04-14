@@ -11,7 +11,7 @@ function electron_store_init_main() {
 const electron_store_init_preload = {
     get: (key) => ipcRenderer.invoke('electron-store-get', key),
     set: (key, value) => ipcRenderer.invoke('electron-store-set', key, value),
-    has: (key) => ipcRenderer.invoke('electron-store-has', key),
+    has: (key) => ipcRenderer.invoke('electron-store-has', key)
 }
 
 export { electron_store_init_main, electron_store_init_preload }

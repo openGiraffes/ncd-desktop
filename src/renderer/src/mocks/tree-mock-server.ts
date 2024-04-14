@@ -3,7 +3,7 @@ import * as fs from '../apis/fs'
 import { get_all_filepaths } from '../apis/get-all-file-paths'
 
 const fileSeparator = '\\'
-let filePath = "C:\\Users\\LiarOnce\\Desktop\\bilibili_kaios-main"
+let filePath = 'C:\\Users\\LiarOnce\\Desktop\\bilibili_kaios-main'
 let responseFiles = get_all_filepaths(filePath)
 // console.log(responseFiles)
 

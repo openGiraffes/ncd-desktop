@@ -2,7 +2,9 @@
     <el-menu id="sidebar" default-active="/" class="ncd-menu-vertical" :collapse="true" router>
         <el-menu-item-group>
             <el-menu-item index="/account">
-                <el-icon><img class="ncd-account-avatar-sidebar" :src="NcdAvatar" alt="avatar"></el-icon>
+                <el-icon
+                    ><img class="ncd-account-avatar-sidebar" :src="NcdAvatar" alt="avatar"
+                /></el-icon>
                 <template #title>{{ $t('ncd_ui.sidebar_account') }}</template>
             </el-menu-item>
             <el-menu-item index="/">

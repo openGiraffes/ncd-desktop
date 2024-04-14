@@ -6,7 +6,9 @@
                 <div class="buttons-account">
                     <div v-if="isLogin">
                         <p class="account-username"></p>
-                        <div class="button-sync"><el-button type="primary">同步设置</el-button></div>
+                        <div class="button-sync">
+                            <el-button type="primary">同步设置</el-button>
+                        </div>
                         <div class="button-logout"><el-button>登出</el-button></div>
                     </div>
                     <div v-else>
@@ -33,10 +35,10 @@ const isLogin = false
 </script>
 
 <style scoped>
-.ncd-account-page{
+.ncd-account-page {
     height: 100%;
 }
-.el-container{
+.el-container {
     height: 100%;
 }
 .ncd-account-avatar {
@@ -51,7 +53,7 @@ const isLogin = false
     align-items: flex-start;
 }
 .buttons-account > *,
-.buttons-account .el-button{
+.buttons-account .el-button {
     width: 100%;
     margin-bottom: 6px;
 }

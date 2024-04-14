@@ -8,6 +8,7 @@ import icon from '../../resources/icon.png?asset'
 import { electron_store_init_main } from './electron-store'
 import { fs_init_ready } from './fs'
 import { child_process_init_main } from './child-process'
+import { firefox_client_init_main } from './firefox-client'
 
 let mainWindow = null
 
@@ -27,7 +28,7 @@ function createWindow() {
             enableRemoteModule: true
         }
     })
-    
+
     mainWindow.on('ready-to-show', () => {
         mainWindow.show()
     })
@@ -37,7 +38,7 @@ function createWindow() {
         return { action: 'deny' }
     })
 
-    mainWindow.webContents.send('file-paths', "main");
+    mainWindow.webContents.send('file-paths', 'main')
 
     if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
@@ -66,7 +67,8 @@ app.whenReady().then(() => {
     electron_store_init_main()
     fs_init_ready()
     child_process_init_main()
-    
+    firefox_client_init_main()
+
     createWindow()
 
     app.on('activate', function () {
@@ -84,7 +86,8 @@ app.on('window-all-closed', () => {
 
 async function handleFileOpen() {
     const options = {
-        title: 'Select program'
+        title: 'Select program',
+        properties: ['openFile']
     }
     const { canceled, filePaths } = await dialog.showOpenDialog(options)
     if (canceled) {
@@ -96,18 +99,17 @@ async function handleFileOpen() {
     }
 }
 
-
 async function handleFolderOpen() {
     const options = {
         title: 'Select a Folder',
         properties: ['openDirectory']
     }
-    const { canceled, folderPaths } = await dialog.showOpenDialog(options)
+    const { canceled, filePaths } = await dialog.showOpenDialog(options)
     if (canceled) {
         console.log(1)
         return
     } else {
-        console.log(2, folderPaths)
-        return folderPaths[0]
+        console.log(2, filePaths)
+        return filePaths[0]
     }
 }

@@ -1,9 +1,20 @@
 <template>
     <div class="ncd-monaco-editor">
-        <MonacoTreeEditor :font-size="14" :files="files" :sider-min-width="240" filelist-title="文件列表"
-                    @reload="handleReload" @new-file="handleNewFile" @new-folder="handleNewFolder"
-                    @save-file="handleSaveFile" @delete-file="handleDeleteFile" @delete-folder="handleDeleteFolder"
-                    @rename-file="handleRename" @rename-folder="handleRename" language="zh-CN"></MonacoTreeEditor>
+        <MonacoTreeEditor
+            :font-size="14"
+            :files="files"
+            :sider-min-width="240"
+            filelist-title="文件列表"
+            @reload="handleReload"
+            @new-file="handleNewFile"
+            @new-folder="handleNewFolder"
+            @save-file="handleSaveFile"
+            @delete-file="handleDeleteFile"
+            @delete-folder="handleDeleteFolder"
+            @rename-file="handleRename"
+            @rename-folder="handleRename"
+            language="zh-CN"
+        ></MonacoTreeEditor>
     </div>
 </template>
 
@@ -36,11 +47,9 @@ import * as server from '../mocks/tree-mock-server'
 
 // Monaco tree Start
 const files = ref<Files>()
-const handleReload = (
-    resolve: () => void, 
-    reject: (msg?: string) => void
-) => {
-    server.fetchFiles()
+const handleReload = (resolve: () => void, reject: (msg?: string) => void) => {
+    server
+        .fetchFiles()
         .then((response) => {
             files.value = response
             resolve()
@@ -55,7 +64,8 @@ const handleSaveFile = (
     resolve: () => void,
     reject: (msg?: string) => void
 ) => {
-    server.createOrSaveFile(path, content)
+    server
+        .createOrSaveFile(path, content)
         .then((_response) => {
             resolve()
         })
@@ -63,12 +73,9 @@ const handleSaveFile = (
             reject(e.message)
         })
 }
-const handleDeleteFile = (
-    path: string,
-    resolve: () => void,
-    reject: (msg?: string) => void
-) => {
-    server.deleteFile(path)
+const handleDeleteFile = (path: string, resolve: () => void, reject: (msg?: string) => void) => {
+    server
+        .deleteFile(path)
         .then((_response) => {
             resolve()
         })
@@ -76,15 +83,12 @@ const handleDeleteFile = (
             reject(e.message)
         })
 }
-const handleDeleteFolder = (
-    path: string,
-    resolve: () => void,
-    reject: (msg?: string) => void
-) => {
+const handleDeleteFolder = (path: string, resolve: () => void, reject: (msg?: string) => void) => {
     reject('Operation of delete folder is not supported!')
 }
 const handleNewFile = (path: string, resolve: Function, reject: Function) => {
-    server.newFile(path)
+    server
+        .newFile(path)
         .then((_response) => {
             resolve()
         })
@@ -93,7 +97,8 @@ const handleNewFile = (path: string, resolve: Function, reject: Function) => {
         })
 }
 const handleNewFolder = (path: string, resolve: Function, reject: Function) => {
-    server.newFolder(path)
+    server
+        .newFolder(path)
         .then((_response) => {
             resolve()
         })
@@ -107,7 +112,8 @@ const handleRename = (
     resolve: () => void,
     reject: (msg?: string) => void
 ) => {
-    server.rename(path, newPath)
+    server
+        .rename(path, newPath)
         .then((_response) => {
             resolve()
         })
@@ -122,6 +128,6 @@ const handleRename = (
 .ncd-monaco-editor {
     /* height: 90vh; */
     height: 100%;
-    text-align: left!important;
+    text-align: left !important;
 }
 </style>

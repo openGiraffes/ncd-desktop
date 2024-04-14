@@ -1,7 +1,7 @@
 <template>
     <el-container style="height: 100%">
         <Sidebar></Sidebar>
-        <el-main style="flex-basis: min-content!important;">
+        <el-main style="flex-basis: min-content !important">
             <router-view v-slot="{ Component, route }">
                 <keep-alive>
                     <component :is="Component" v-if="route.meta.keepAlive" :key="route.path" />
@@ -30,7 +30,7 @@ export default {
     text-align: center;
     color: #2c3e50;
 }
-.nowrap-items{
-    flex-wrap: nowrap!important;
+.nowrap-items {
+    flex-wrap: nowrap !important;
 }
 </style>

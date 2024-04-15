@@ -32,6 +32,8 @@ declare module 'vue' {
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     IEpArrowLeft: typeof import('~icons/ep/arrow-left')['default']
     IEpCircleCheckFilled: typeof import('~icons/ep/circle-check-filled')['default']
     IEpFiles: typeof import('~icons/ep/files')['default']

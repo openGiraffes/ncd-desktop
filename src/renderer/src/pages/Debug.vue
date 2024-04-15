@@ -70,13 +70,15 @@ let process_output = reactive({
 async function open_kailive() {
     let python_path = (await stores.get_keys('python_path')) + '\\python.exe'
     let kailive_path = (await stores.get_keys('kailive_path')) + '\\kailive-tk-speed.py'
-    spawn_command(python_path, [kailive_path])
-    ipcRenderer.on('command-result', (event, result) => {
-        if (result.error) {
-            console.error(result.error)
-        } else {
-            process_output.kailive_stdout = result.stdout
-        }
+    let command = child_process.spawn(python_path, [kailive_path])
+    command.stdout.on('data', (data) => {
+        console.log("KaiLive: " + data)
+    })
+    command.stderr.on('error', (err) => {
+        console.log("KaiLive Error: " + err)
+    })
+    command.on('close', (code) => {
+        console.log("KaiLive close code: " + code)
     })
 }
 async function open_webide_xul() {

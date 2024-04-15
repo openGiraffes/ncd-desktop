@@ -12,6 +12,7 @@ export let getReplacer = () => {
         'better-sqlite3',
         'knex'
     ]
+
     let result = {}
     for (let item of externalModels) {
         result[item] = () => ({
@@ -19,6 +20,7 @@ export let getReplacer = () => {
             code: `const ${item} = require('${item}');export { ${item} as default }`
         })
     }
+    
     result['electron'] = () => {
         let electronModules = [
             // 'clipboard',

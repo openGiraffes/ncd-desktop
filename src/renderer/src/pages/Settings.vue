@@ -7,86 +7,94 @@
             <el-main>
                 <div class="ncd-settings-form">
                     <el-form ref="settings_ref" :model="settings_form" label-position="left">
-                        <el-form-item :label="$t('ncd_ui.settings_locale')">
-                            <el-select
-                                v-model="settings_form.locale"
-                                @change="set_locale(settings_form.locale)"
-                            >
-                                <el-option
-                                    v-for="(item, index) in locales_list.locales"
-                                    :key="item.code"
-                                    :label="item.desc"
-                                    :value="item.code"
-                                />
-                            </el-select>
-                        </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.settings_kaistores')">
-                            <el-select
-                                v-model="settings_form.kaistores"
-                                @change="set_kaistores(settings_form.kaistores)"
-                            >
-                                <el-option
-                                    v-for="(item, index) in kaistore_list.kaistores"
-                                    :key="item.desc"
-                                    :label="item.fulldesc"
-                                    :value="item.code"
-                                />
-                            </el-select>
-                        </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.settings_adb_path')">
-                            <el-input v-model="settings_form.adb_path">
-                                <template #suffix>
-                                    <el-link type="primary" @click="set_adb_path">{{
-                                        $t('ncd_general.select_path')
-                                    }}</el-link>
-                                </template>
-                            </el-input>
-                        </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.settings_python_path')">
-                            <el-input v-model="settings_form.python_path">
-                                <template #suffix>
-                                    <el-link type="primary" @click="set_python_path">{{
-                                        $t('ncd_general.select_path')
-                                    }}</el-link>
-                                </template>
-                            </el-input>
-                        </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.settings_kailive_path')">
-                            <el-input v-model="settings_form.kailive_path">
-                                <template #suffix>
-                                    <el-link type="primary" @click="set_kailive_path">{{
-                                        $t('ncd_general.select_path')
-                                    }}</el-link>
-                                </template>
-                            </el-input>
-                        </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.settings_download_path')">
-                            <el-input v-model="settings_form.download_path">
-                                <template #suffix>
-                                    <el-link type="primary" @click="set_download_path">{{
-                                        $t('ncd_general.select_path')
-                                    }}</el-link>
-                                </template>
-                            </el-input>
-                        </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.settings_firefox_xul_path')">
-                            <el-input v-model="settings_form.firefox_xul_path">
-                                <template #suffix>
-                                    <el-link type="primary" @click="set_firefox_xul_path">{{
-                                        $t('ncd_general.select_path')
-                                    }}</el-link>
-                                </template>
-                            </el-input>
-                        </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.settings_firefox_quantum_path')">
-                            <el-input v-model="settings_form.firefox_quantum_path">
-                                <template #suffix>
-                                    <el-link type="primary" @click="set_firefox_quantum_path">{{
-                                        $t('ncd_general.select_path')
-                                    }}</el-link>
-                                </template>
-                            </el-input>
-                        </el-form-item>
+                        <el-tabs v-model="settings_activate" class="ncd-settings-tabs">
+                            <el-tab-pane label="通用" name="general">
+                                <el-form-item :label="$t('ncd_ui.settings_locale')">
+                                    <el-select v-model="settings_form.locale"
+                                        @change="set_locale(settings_form.locale)">
+                                        <el-option v-for="(item, index) in locales_list.locales" :key="item.code"
+                                            :label="item.desc" :value="item.code" />
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item :label="$t('ncd_ui.settings_kaistores')">
+                                    <el-select v-model="settings_form.kaistores"
+                                        @change="set_kaistores(settings_form.kaistores)">
+                                        <el-option v-for="(item, index) in kaistore_list.kaistores" :key="item.desc"
+                                            :label="item.fulldesc" :value="item.code" />
+                                    </el-select>
+                                </el-form-item>
+                            </el-tab-pane>
+                            <el-tab-pane label="环境" name="env">
+                                <el-form-item :label="$t('ncd_ui.settings_adb_path')">
+                                    <el-input v-model="settings_form.adb_path">
+                                        <template #suffix>
+                                            <el-link type="primary" @click="set_adb_path">{{
+                                                $t('ncd_general.select_path')
+                                                }}</el-link>
+                                        </template>
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item :label="$t('ncd_ui.settings_python_path')">
+                                    <el-input v-model="settings_form.python_path">
+                                        <template #suffix>
+                                            <el-link type="primary" @click="set_python_path">{{
+                                                $t('ncd_general.select_path')
+                                                }}</el-link>
+                                        </template>
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item :label="$t('ncd_ui.settings_gdeploy_path')">
+                                    <el-input v-model="settings_form.gdeploy_path">
+                                        <template #suffix>
+                                            <el-link type="primary" @click="set_gdeploy_path">{{
+                                                $t('ncd_general.select_path')
+                                                }}</el-link>
+                                        </template>
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item :label="$t('ncd_ui.settings_kailive_path')">
+                                    <el-input v-model="settings_form.kailive_path">
+                                        <template #suffix>
+                                            <el-link type="primary" @click="set_kailive_path">{{
+                                                $t('ncd_general.select_path')
+                                                }}</el-link>
+                                        </template>
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item :label="$t('ncd_ui.settings_firefox_xul_path')">
+                                    <el-input v-model="settings_form.firefox_xul_path">
+                                        <template #suffix>
+                                            <el-link type="primary" @click="set_firefox_xul_path">{{
+                                                $t('ncd_general.select_path')
+                                            }}</el-link>
+                                        </template>
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item :label="$t('ncd_ui.settings_firefox_quantum_path')">
+                                    <el-input v-model="settings_form.firefox_quantum_path">
+                                        <template #suffix>
+                                            <el-link type="primary" @click="set_firefox_quantum_path">{{
+                                                $t('ncd_general.select_path')
+                                            }}</el-link>
+                                        </template>
+                                    </el-input>
+                                </el-form-item>
+                            </el-tab-pane>
+                            <el-tab-pane label="个性化" name="personal">
+                                <el-form-item :label="$t('ncd_ui.settings_download_path')">
+                                    <el-input v-model="settings_form.download_path">
+                                        <template #suffix>
+                                            <el-link type="primary" @click="set_download_path">{{
+                                                $t('ncd_general.select_path')
+                                                }}</el-link>
+                                        </template>
+                                    </el-input>
+                                </el-form-item>
+                            </el-tab-pane>
+                            <el-tab-pane label="开发" name="dev">
+                                
+                            </el-tab-pane>
+                        </el-tabs>
                     </el-form>
                 </div>
             </el-main>
@@ -96,7 +104,7 @@
 
 <script>
 import { ipcRenderer } from 'electron'
-import { onMounted } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import i18n from '../apis/vue-i18n'
 import * as stores from '../apis/electron-store'
 import locales_list from '../lists/locale_list'
@@ -114,10 +122,13 @@ const settings_form = reactive({
     adb_path: '',
     python_path: '',
     kailive_path: '',
+    gdeploy_path: '',
     download_path: '',
     firefox_xul_path: '',
     firefox_quantum_path: ''
 })
+
+const settings_activate = ref('general')
 
 const set_adb_path = () => {
     const result = ipcRenderer.invoke('dialog:openFolder')
@@ -138,6 +149,21 @@ const set_python_path = () => {
         if (res !== undefined) {
             settings_form.python_path = res
             stores.set_keys('python_path', res)
+        } else {
+            return
+        }
+    })
+}
+
+const set_gdeploy_path = () => {
+    // ATTENSION: gdeploy and its dependencies are so old that you need to use binaries packaged 
+    // based on the v12.x environment before updating the code to be compatible with current
+    // Node.js version.
+    const result = ipcRenderer.invoke('dialog:openFile')
+    result.then((res) => {
+        if (res !== undefined) {
+            settings_form.gdeploy_path = res
+            stores.set_keys('gdeploy_path', res)
         } else {
             return
         }
@@ -208,6 +234,7 @@ const set_kaistores = async (st) => {
 onMounted(async () => {
     settings_form.adb_path = await stores.get_keys('adb_path')
     settings_form.python_path = await stores.get_keys('python_path')
+    settings_form.gdeploy_path = await stores.get_keys('gdeploy_path')
     settings_form.kailive_path = await stores.get_keys('kailive_path')
     settings_form.download_path = await stores.get_keys('download_path')
     settings_form.firefox_xul_path = await stores.get_keys('firefox_xul_path')

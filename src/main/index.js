@@ -41,7 +41,7 @@ function createWindow() {
 
     mainWindow.webContents.send('file-paths', 'main')
     mainWindow.on('close', () => {
-        mainWindow.webContents.executeJavaScript('localStorage.removeItem("project_files_cache")', true).then((result) => {
+        mainWindow.webContents.executeJavaScript('localStorage.removeItem("project_current")', true).then((result) => {
             console.log("Clean project_cache successful.")
         })
     })

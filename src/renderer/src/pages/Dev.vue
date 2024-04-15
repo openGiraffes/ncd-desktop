@@ -4,26 +4,15 @@
             <el-button @click="let_run_app">
                 <i-ep-video-play />运行
             </el-button>
-            <el-button>
+            <el-button @click="redeploy_app">
                 <i-ep-refresh-right />重新部署
             </el-button>
         </el-header>
         <el-main class="ncd-monaco-editor">
-            <MonacoTreeEditor
-                :font-size="14"
-                :files="files"
-                :sider-min-width="240"
-                filelist-title="文件列表"
-                @reload="handleReload"
-                @new-file="handleNewFile"
-                @new-folder="handleNewFolder"
-                @save-file="handleSaveFile"
-                @delete-file="handleDeleteFile"
-                @delete-folder="handleDeleteFolder"
-                @rename-file="handleRename"
-                @rename-folder="handleRename"
-                language="zh-CN"
-            ></MonacoTreeEditor>
+            <MonacoTreeEditor :font-size="14" :files="files" :sider-min-width="240" filelist-title="文件列表"
+                @reload="handleReload" @new-file="handleNewFile" @new-folder="handleNewFolder"
+                @save-file="handleSaveFile" @delete-file="handleDeleteFile" @delete-folder="handleDeleteFolder"
+                @rename-file="handleRename" @rename-folder="handleRename" language="zh-CN"></MonacoTreeEditor>
         </el-main>
     </div>
 </template>
@@ -38,12 +27,17 @@ export default {
 import { ref, onMounted } from 'vue'
 import { Editor as MonacoTreeEditor, Files } from 'monaco-tree-editor'
 import { useRouter, useRoute } from 'vue-router'
+import child_process from 'child_process'
+import * as stores from '../apis/electron-store'
 import 'monaco-tree-editor/index.css'
 import * as server from '../mocks/tree-mock-server'
-import { installLocalApp } from '../../../main/firefox-client/services/device'
-import { install } from '../apis/gdeploy'
+import * as gdeploy from '../apis/gdeploy'
 
 const router = useRouter()
+
+let project_output = reactive({
+    project_appid: ''
+})
 
 // Monaco tree Start
 const files = ref<Files>()
@@ -123,27 +117,46 @@ const handleRename = (
 }
 // Monaco tree end
 router.afterEach(() => {
-    handleReload() // Refresh list, please ignore error
+    handleReload() // Refresh list, please ignore error from this line.
 })
 
-const let_run_app = async () => {
-    await install(localStorage.getItem('project_current'))
+async function let_run_app() {
+    let gdeploy_path = await stores.get_keys('gdeploy_path')
+    let project_current = localStorage.getItem('project_current') + "\\application"
+    gdeploy.install(gdeploy_path, project_current, () => {
+        let appid = localStorage.getItem('project_appid')
+        gdeploy.start(gdeploy_path, appid)
+    })
+}
+
+async function redeploy_app() {
+    let gdeploy_path = await stores.get_keys('gdeploy_path')
+    let project_current = localStorage.getItem('project_current') + "\\application"
+    let project_appid = localStorage.getItem('project_appid')
+    gdeploy.uninstall(gdeploy_path, project_appid, () => {
+        gdeploy.install(gdeploy_path, project_current, () => {
+            let appid = localStorage.getItem('project_appid')
+            gdeploy.start(gdeploy_path, appid)
+        })
+    })
 }
 </script>
 
 <style scoped>
 .ncd-monaco-dev {
     height: 100%;
-    padding: 0!important;
+    padding: 0 !important;
 }
+
 .ncd-monaco-toolbar {
     text-align: right;
-    height: auto!important;
-    padding: 0!important;
+    height: auto !important;
+    padding: 0 !important;
 }
+
 .ncd-monaco-editor {
     height: 96%;
-    padding: 0!important;
-    text-align: left!important;
+    padding: 0 !important;
+    text-align: left !important;
 }
 </style>

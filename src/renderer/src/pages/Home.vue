@@ -41,6 +41,7 @@ function click_filepath() {
     result.then(async (res) => {
         if (res !== undefined) {
             server.getFiles(res.replaceAll('\\', '\\\\'))
+            localStorage.setItem('project_current', res.replaceAll('\\', '\\\\'))
             await router.push({ path: 'dev', query: { refresh: true }})
         } else {
             return

@@ -18,12 +18,14 @@
         "build:linux": "npm run build && electron-builder --linux"
     },
     "dependencies": {
+        "@cliqz-oss/firefox-client": "^0.3.1",
+        "@cliqz-oss/node-firefox-connect": "^1.2.1",
+        "node-firefox-install-app": "git+https://github.com/plugnburn/node-firefox-install-app.git",
         "@electron-toolkit/preload": "^3.0.0",
         "@electron-toolkit/utils": "^3.0.0",
         "@electron/remote": "^2.1.2",
         "@element-plus/icons-vue": "^2.3.1",
         "@guolao/vue-monaco-editor": "^1.5.1",
-        "@cliqz-oss/firefox-client": "^0.3.1",
         "axios": "^1.6.8",
         "electron-store": "^8.2.0",
         "electron-updater": "^6.1.7",

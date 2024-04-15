@@ -1,7 +1,7 @@
 <template>
     <div class="ncd-monaco-dev">
         <el-header class="ncd-monaco-toolbar">
-            <el-button>
+            <el-button @click="let_run_app">
                 <i-ep-video-play />运行
             </el-button>
             <el-button>
@@ -40,6 +40,8 @@ import { Editor as MonacoTreeEditor, Files } from 'monaco-tree-editor'
 import { useRouter, useRoute } from 'vue-router'
 import 'monaco-tree-editor/index.css'
 import * as server from '../mocks/tree-mock-server'
+import { installLocalApp } from '../../../main/firefox-client/services/device'
+import { install } from '../apis/gdeploy'
 
 const router = useRouter()
 
@@ -121,8 +123,12 @@ const handleRename = (
 }
 // Monaco tree end
 router.afterEach(() => {
-    handleReload() // Refresh list
+    handleReload() // Refresh list, please ignore error
 })
+
+const let_run_app = async () => {
+    await install(localStorage.getItem('project_current'))
+}
 </script>
 
 <style scoped>

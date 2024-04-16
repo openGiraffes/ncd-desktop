@@ -8,6 +8,7 @@
                 <div class="ncd-settings-form">
                     <el-form ref="settings_ref" :model="settings_form" label-position="left">
                         <el-tabs v-model="settings_activate" class="ncd-settings-tabs">
+                            <!-- 通用设置 -->
                             <el-tab-pane :label="$t('ncd_ui.settings.general.title')" name="general">
                                 <el-form-item :label="$t('ncd_ui.settings.general.locale')">
                                     <el-select v-model="settings_form.locale"
@@ -24,6 +25,7 @@
                                     </el-select>
                                 </el-form-item>
                             </el-tab-pane>
+                            <!-- 环境设置 -->
                             <el-tab-pane :label="$t('ncd_ui.settings.env.title')" name="env">
                                 <el-form-item :label="$t('ncd_ui.settings.env.adb_path')">
                                     <el-input v-model="settings_form.adb_path">
@@ -84,6 +86,7 @@
                                     </el-input>
                                 </el-form-item>
                             </el-tab-pane>
+                            <!-- 个性化 -->
                             <el-tab-pane :label="$t('ncd_ui.settings.personal.title')" name="personal">
                                 <el-form-item :label="$t('ncd_ui.settings.personal.download_path')">
                                     <el-input v-model="settings_form.download_path">
@@ -95,7 +98,19 @@
                                     </el-input>
                                 </el-form-item>
                             </el-tab-pane>
+                            <!-- 开发设置 -->
                             <el-tab-pane :label="$t('ncd_ui.settings.dev.title')" name="dev">
+                                <el-form-item :label="$t('ncd_ui.settings.dev.project_path')">
+                                    <el-input v-model="settings_form.project_path"
+                                        :placeholder="$t('ncd_ui_tips.settings_project_path')"
+                                    >
+                                        <template #suffix>
+                                            <el-link type="primary"
+                                                @click="set_env_path('project_path', 'dialog:openFolder')"
+                                            >{{ $t('ncd_general.select_path') }}</el-link>
+                                        </template>
+                                    </el-input>
+                                </el-form-item>
                                 <el-form-item :label="$t('ncd_ui.settings.dev.goto_debug')">
                                     <el-checkbox 
                                         v-model="settings_form.goto_debug" 
@@ -139,7 +154,8 @@ const settings_form = reactive({
     firefox_xul_path: '',     // firefox_xul_path works with Firefox 59.0 and earlier versions,
                               // as well as browsers based on older versions (e.g. Waterfox Classic).
     firefox_quantum_path: '', // firefox_quantum_path works with Firefox 59.0 and newer versions.
-    goto_debug: false
+    goto_debug: false,
+    project_path: ''
 })
 
 const settings_activate = ref('general')
@@ -181,6 +197,8 @@ onMounted(async () => {
     settings_form.firefox_quantum_path = await stores.get_keys('firefox_quantum_path')
     settings_form.locale = await stores.get_keys('locale')
     settings_form.kaistores = await stores.get_keys('kaistores')
+    settings_form.goto_debug = await stores.get_keys('goto_debug')
+    settings_form.project_path = await stores.get_keys('project_path')
 })
 </script>
 

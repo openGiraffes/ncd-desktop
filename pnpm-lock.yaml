@@ -8,9 +8,6 @@ dependencies:
   '@cliqz-oss/firefox-client':
     specifier: ^0.3.1
     version: 0.3.1
-  '@cliqz-oss/node-firefox-connect':
-    specifier: ^1.2.1
-    version: 1.2.1
   '@electron-toolkit/preload':
     specifier: ^3.0.0
     version: 3.0.0(electron@22.3.27)
@@ -36,8 +33,8 @@ dependencies:
     specifier: ^6.1.7
     version: 6.1.7
   element-plus:
-    specifier: ^2.5.5
-    version: 2.5.5(vue@3.4.18)
+    specifier: ^2.7.0
+    version: 2.7.0(vue@3.4.18)
   monaco-editor:
     specifier: ^0.46.0
     version: 0.46.0
@@ -381,13 +378,6 @@ packages:
     dependencies:
       colors: 0.5.1
       js-select: 0.6.0
-    dev: false
-
-  /@cliqz-oss/node-firefox-connect@1.2.1:
-    resolution: {integrity: sha512-O/IyiB5pfztCdmxQZg0/xeq5w+YiP3gtJz8d4We2EpLPKzbDVjOrtfLKYgVfm6Ya6mbvDge1uLkSRwaoVCWKnA==}
-    dependencies:
-      '@cliqz-oss/firefox-client': 0.3.1
-      es6-promise: 2.3.0
     dev: false
 
   /@ctrl/tinycolor@3.6.1:
@@ -2275,8 +2265,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /element-plus@2.5.5(vue@3.4.18):
-    resolution: {integrity: sha512-yGU/MruLOWI0ImQPFCyFM4cXtHtILJNAi0hhLImcxjRukjgQLYNkvcvbwqNgBUt808KSeKF9MyxENFyBQLTg+Q==}
+  /element-plus@2.7.0(vue@3.4.18):
+    resolution: {integrity: sha512-WAiaFLavuWFxof9qwkC27jvkh9nRcNnB506g1vvJSiVaVqjCBWUFCIyJKeN11M1qcv2cS5VV5PfSLjTIkrw87A==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
@@ -2426,10 +2416,6 @@ packages:
     resolution: {integrity: sha512-Um/+FxMr9CISWh0bi5Zv0iOD+4cFh5qLeks1qhAopKVAJw3drgKbKySikp7wGhDL0HPeaja0P5ULZrxLkniUVg==}
     requiresBuild: true
     optional: true
-
-  /es6-promise@2.3.0:
-    resolution: {integrity: sha512-oyOjMhyKMLEjOOtvkwg0G4pAzLQ9WdbbeX7WdqKzvYXu+UFgD0Zo/Brq5Q49zNmnGPPzV5rmYvrr0jz1zWx8Iw==}
-    dev: false
 
   /esbuild@0.19.12:
     resolution: {integrity: sha512-aARqgq8roFBj054KvQr5f1sFu0D65G+miZRCuJyJ0G13Zwx7vRar5Zhn2tkQNzIXcBrNVsv/8stehpj+GAjgbg==}

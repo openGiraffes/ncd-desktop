@@ -52,7 +52,8 @@ export default {
     ncd_ui_tips: {
         settings_firefox_xul_path: 'Firefox with older Gecko version (support XPCOM and XUL), such as Waterfox Classic.',
         settings_firefox_quantum_path: 'Firefox with the new kernel.',
-        settings_goto_debug: 'Jump to debug page after project running'
+        settings_goto_debug: 'Jump to debug page after project running',
+        settings_project_path: 'New projects will be created in this directory by default'
     },
     ncd_general: {
         back: 'Back',

@@ -45,14 +45,16 @@ export default {
             },
             dev: {
                 title: '开发',
-                goto_debug: '跳转到调试页面'
+                goto_debug: '跳转到调试页面',
+                project_path: '项目目录'
             }
         }
     },
     ncd_ui_tips: {
         settings_firefox_xul_path: '即使用旧内核且支持 XPCOM 和 XUL 的 Firefox, 例如 Waterfox Classic',
         settings_firefox_quantum_path: '即量子火狐，使用新内核的 Firefox',
-        settings_goto_debug: '运行后跳转到调试页面'
+        settings_goto_debug: '运行后跳转到调试页面',
+        settings_project_path: '新项目将默认创建到该目录下'
     },
     ncd_general: {
         back: '返回',

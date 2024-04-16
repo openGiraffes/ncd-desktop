@@ -5,12 +5,10 @@
                 <img src="../assets/logo.png" alt="" srcset="" />
                 <h1>Nine-colored Deer</h1>
                 <div class="buttons-project">
-                    <div class="button-create-project">
-                        <el-button type="primary">{{
-                            $t('ncd_ui.home.create_project')
-                        }}</el-button>
+                    <div class="button-create-project" @click="create_project()">
+                        <el-button type="primary">{{ $t('ncd_ui.home.create_project')}}</el-button>
                     </div>
-                    <div class="button-open-project" @click="click_filepath()">
+                    <div class="button-open-project" @click="open_project()">
                         <el-button>{{ $t('ncd_ui.home.open_project') }}</el-button>
                     </div>
                 </div>
@@ -20,6 +18,7 @@
                 <p>{{ $t('ncd_ui.home.recent_project_desc') }}</p>
                 <a href="#"></a>
             </el-main>
+            <CreateProjectDialog ref="project_dialog_visible"></CreateProjectDialog>
         </el-container>
     </div>
 </template>
@@ -28,6 +27,9 @@
 import { ipcRenderer } from 'electron'
 import { useRouter, useRoute } from 'vue-router'
 import * as server from '../mocks/tree-mock-server'
+
+import CreateProjectDialog from '../components/CreateProjectDialog.vue'
+
 export default {
     name: 'HomePage'
 }
@@ -35,8 +37,11 @@ export default {
 
 <script setup>
 const router = useRouter()
-
-function click_filepath() {
+const project_dialog_visible = ref(null)
+function create_project() {
+    project_dialog_visible.value.show_dialog = true
+}
+function open_project() {
     const result = ipcRenderer.invoke('dialog:openProject')
     result.then(async (res) => {
         if (res !== undefined) {

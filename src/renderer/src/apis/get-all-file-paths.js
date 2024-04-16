@@ -1,11 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 
-function get_all_filepaths(dirPath) {
+async function get_all_filepaths(dirPath) {
     const itemsData = {}
 
-    function traverse_directory(currentPath) {
-        const items = fs.readdirSync(currentPath)
+    async function traverse_directory(currentPath) {
+        const items = await fs.readdirSync(currentPath)
 
         for (const item of items) {
             const itemPath = path.join(currentPath, item)
@@ -26,7 +26,7 @@ function get_all_filepaths(dirPath) {
         }
     }
 
-    traverse_directory(dirPath)
+    await traverse_directory(dirPath)
     return itemsData
 }
 

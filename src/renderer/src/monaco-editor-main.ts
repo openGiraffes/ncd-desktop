@@ -1,5 +1,6 @@
 import { loader } from '@guolao/vue-monaco-editor'
-import * as monaco from 'monaco-editor'
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.main'
+import 'monaco-editor/esm/vs/basic-languages/monaco.contribution';
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker'
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
@@ -11,7 +12,7 @@ import * as server from './mocks/tree-mock-server'
 function ncd_monaco_editor_init() {
     self.MonacoEnvironment = {
         getWorker(_, label) {
-            if (label === 'json') {
+            if (label === 'json' || label === 'webapp') {
                 return new jsonWorker()
             }
             if (label === 'css' || label === 'scss' || label === 'less') {
@@ -27,7 +28,7 @@ function ncd_monaco_editor_init() {
         },
         globalAPI: true
     }
-    loader.config({ monaco })
+    // loader.config({ monaco })
     let monacoStore
     // 模拟延迟，测试健壮性 mock delay to test robustness
     server.delay().then(() => {

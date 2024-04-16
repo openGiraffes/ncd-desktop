@@ -17,8 +17,8 @@
                                 class="ncd-tools-package-selection"
                                 @change="getModelValue"
                             >
-                                <el-radio :label="1">KaiStore</el-radio>
-                                <el-radio :label="2">OmniSD</el-radio>
+                                <el-radio :value="1">KaiStore</el-radio>
+                                <el-radio :value="2">OmniSD</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item :label="$t('ncd_ui.tools.packagezip.project_path')">

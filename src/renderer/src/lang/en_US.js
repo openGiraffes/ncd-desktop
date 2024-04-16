@@ -1,26 +1,58 @@
 export default {
     ncd_ui: {
-        sidebar_home: 'Home',
-        sidebar_dev: 'Develop',
-        sidebar_debugger: 'Debugger',
-        sidebar_tools: 'Tools',
-        sidebar_store: 'KaiOS Store',
-        sidebar_settings: 'Settings',
-        sidebar_account: 'Account',
-        home_create_project: 'Create project',
-        home_open_project: 'Open existing project',
-        home_recent_project: 'Recent Project',
-        home_recent_project_desc: 'Recently opened projects are displayed here.',
-        tools_packagezip: 'Package ZIP',
-        tools_packagezip_radio: 'Package Type',
-        tools_packagezip_project_path: 'Project Path',
-        tools_packagezip_save_path: 'Save Path',
-        tools_packagezip_submit: 'Package',
-        settings_adb_path: 'ADB Path',
-        settings_locale: 'Languages',
-        settings_python_path: 'Python Path',
-        settings_kaistores: 'Store source',
-        settings_download_path: 'Download Path'
+        sidebar: {
+            home: 'Home',
+            dev: 'Develop',
+            debugger: 'Debugger',
+            tools: 'Tools',
+            store: 'KaiOS Store',
+            settings: 'Settings',
+            account: 'Account',
+        },
+        home: {
+            create_project: 'Create project',
+            open_project: 'Open existing project',
+            recent_project: 'Recent Project',
+            recent_project_desc: 'Recently opened projects are displayed here.',
+        },
+        tools: {
+            packagezip: {
+                title: 'Package ZIP',
+                radio: 'Package Type',
+                project_path: 'Project Path',
+                save_path: 'Save Path',
+                submit: 'Package',
+            }
+        },
+        settings: {
+            general: {
+                title: 'General',
+                locale: 'Languages',
+                kaistores: 'Store source'
+            },
+            env: {
+                title: 'Environment',
+                adb_path: 'ADB Path',
+                python_path: 'Python Path',
+                gdeploy_path: 'gdeploy Path',
+                kailive_path: 'KaiLive Path',
+                firefox_xul_path: 'Firefox XUL Path',
+                firefox_quantum_path: 'Firefox Quantum Path',
+            },
+            personal: {
+                title: 'Personalization',
+                download_path: 'Download Path',
+            },
+            dev: {
+                title: 'Develop',
+                goto_debug: 'Jump to debug page'
+            }
+        }
+    },
+    ncd_ui_tips: {
+        settings_firefox_xul_path: 'Firefox with older Gecko version (support XPCOM and XUL), such as Waterfox Classic.',
+        settings_firefox_quantum_path: 'Firefox with the new kernel.',
+        settings_goto_debug: 'Jump to debug page after project running'
     },
     ncd_general: {
         back: 'Back',

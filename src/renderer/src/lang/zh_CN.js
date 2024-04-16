@@ -1,26 +1,58 @@
 export default {
     ncd_ui: {
-        sidebar_home: '主页',
-        sidebar_dev: '开发',
-        sidebar_debugger: '调试',
-        sidebar_tools: '工具',
-        sidebar_store: 'KaiOS 商店',
-        sidebar_settings: '设置',
-        sidebar_account: '账户',
-        home_create_project: '新建项目',
-        home_open_project: '打开已有项目',
-        home_recent_project: '最近项目',
-        home_recent_project_desc: '最近打开的项目会在这里展示',
-        tools_packagezip: '打包 ZIP 程序包',
-        tools_packagezip_radio: '打包类型',
-        tools_packagezip_project_path: '项目目录',
-        tools_packagezip_save_path: '保存位置',
-        tools_packagezip_submit: '打包',
-        settings_adb_path: 'ADB 目录',
-        settings_locale: '语言',
-        settings_python_path: 'Python 目录',
-        settings_kaistores: '商店来源',
-        settings_download_path: '下载路径'
+        sidebar: {
+            home: '主页',
+            dev: '开发',
+            debugger: '调试',
+            tools: '工具',
+            store: 'KaiOS 商店',
+            settings: '设置',
+            account: '账户',
+        },
+        home: {
+            create_project: '新建项目',
+            open_project: '打开已有项目',
+            recent_project: '最近项目',
+            recent_project_desc: '最近打开的项目会在这里展示',
+        },
+        tools: {
+            packagezip: {
+                title: '打包 ZIP 程序包',
+                radio: '打包类型',
+                project_path: '项目目录',
+                save_path: '保存位置',
+                submit: '打包',
+            }
+        },
+        settings: {
+            general: {
+                title: '通用',
+                locale: '语言',
+                kaistores: '商店来源'
+            },
+            env: {
+                title: '环境',
+                adb_path: 'ADB 目录',
+                python_path: 'Python 目录',
+                gdeploy_path: 'gdeploy 工具路径',
+                kailive_path: 'KaiLive 工具目录',
+                firefox_xul_path: 'Firefox XUL 路径',
+                firefox_quantum_path: 'Firefox Quantum 路径',
+            },
+            personal: {
+                title: '个性化',
+                download_path: '下载路径',
+            },
+            dev: {
+                title: '开发',
+                goto_debug: '跳转到调试页面'
+            }
+        }
+    },
+    ncd_ui_tips: {
+        settings_firefox_xul_path: '即使用旧内核且支持 XPCOM 和 XUL 的 Firefox, 例如 Waterfox Classic',
+        settings_firefox_quantum_path: '即量子火狐，使用新内核的 Firefox',
+        settings_goto_debug: '运行后跳转到调试页面'
     },
     ncd_general: {
         back: '返回',

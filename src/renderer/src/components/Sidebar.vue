@@ -5,31 +5,31 @@
                 <el-icon
                     ><img class="ncd-account-avatar-sidebar" :src="NcdAvatar" alt="avatar"
                 /></el-icon>
-                <template #title>{{ $t('ncd_ui.sidebar_account') }}</template>
+                <template #title>{{ $t('ncd_ui.sidebar.account') }}</template>
             </el-menu-item>
             <el-menu-item index="/">
                 <el-icon><i-ep-home-filled /></el-icon>
-                <template #title>{{ $t('ncd_ui.sidebar_home') }}</template>
+                <template #title>{{ $t('ncd_ui.sidebar.home') }}</template>
             </el-menu-item>
             <el-menu-item index="/dev">
                 <el-icon><i-ep-top-right /></el-icon>
-                <template #title>{{ $t('ncd_ui.sidebar_dev') }}</template>
+                <template #title>{{ $t('ncd_ui.sidebar.dev') }}</template>
             </el-menu-item>
             <el-menu-item index="/debugger">
                 <el-icon><i-ep-circle-check-filled /></el-icon>
-                <template #title>{{ $t('ncd_ui.sidebar_debugger') }}</template>
+                <template #title>{{ $t('ncd_ui.sidebar.debugger') }}</template>
             </el-menu-item>
             <el-menu-item index="/tools">
                 <el-icon><i-ep-tools /></el-icon>
-                <template #title>{{ $t('ncd_ui.sidebar_tools') }}</template>
+                <template #title>{{ $t('ncd_ui.sidebar.tools') }}</template>
             </el-menu-item>
             <el-menu-item index="/store">
                 <el-icon><i-ep-shopping-bag /></el-icon>
-                <template #title>{{ $t('ncd_ui.sidebar_store') }}</template>
+                <template #title>{{ $t('ncd_ui.sidebar.store') }}</template>
             </el-menu-item>
             <el-menu-item index="/settings">
                 <el-icon><i-ep-setting /></el-icon>
-                <template #title>{{ $t('ncd_ui.sidebar_settings') }}</template>
+                <template #title>{{ $t('ncd_ui.sidebar.settings') }}</template>
             </el-menu-item>
         </el-menu-item-group>
     </el-menu>

@@ -7,17 +7,17 @@
                 <div class="buttons-project">
                     <div class="button-create-project">
                         <el-button type="primary">{{
-                            $t('ncd_ui.home_create_project')
+                            $t('ncd_ui.home.create_project')
                         }}</el-button>
                     </div>
                     <div class="button-open-project" @click="click_filepath()">
-                        <el-button>{{ $t('ncd_ui.home_open_project') }}</el-button>
+                        <el-button>{{ $t('ncd_ui.home.open_project') }}</el-button>
                     </div>
                 </div>
             </el-aside>
             <el-main>
-                <h1>{{ $t('ncd_ui.home_recent_project') }}</h1>
-                <p>{{ $t('ncd_ui.home_recent_project_desc') }}</p>
+                <h1>{{ $t('ncd_ui.home.recent_project') }}</h1>
+                <p>{{ $t('ncd_ui.home.recent_project_desc') }}</p>
                 <a href="#"></a>
             </el-main>
         </el-container>

@@ -6,12 +6,12 @@
                     <el-icon><i-ep-arrow-left /></el-icon>
                     {{ $t('ncd_general.back') }}
                 </el-button>
-                {{ $t('ncd_ui.tools_packagezip') }}
+                {{ $t('ncd_ui.tools.packagezip.title') }}
             </el-header>
             <el-main>
                 <div class="ncd-tools-package-form">
                     <el-form ref="formRef" :model="package_form" label-width="auto">
-                        <el-form-item :label="$t('ncd_ui.tools_packagezip_radio')">
+                        <el-form-item :label="$t('ncd_ui.tools.packagezip.radio')">
                             <el-radio-group
                                 v-model="package_form.package_default"
                                 class="ncd-tools-package-selection"
@@ -21,13 +21,13 @@
                                 <el-radio :label="2">OmniSD</el-radio>
                             </el-radio-group>
                         </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.tools_packagezip_project_path')">
+                        <el-form-item :label="$t('ncd_ui.tools.packagezip.project_path')">
                             <el-input v-model="package_form.project_path" />
                             <el-button type="primary" @click="get_project_folder">{{
                                 $t('ncd_general.select_path')
                             }}</el-button>
                         </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.tools_packagezip_save_path')">
+                        <el-form-item :label="$t('ncd_ui.tools.packagezip.save_path')">
                             <el-input v-model="package_form.package_savepath" />
                             <el-button type="primary" @click="get_save_folder">{{
                                 $t('ncd_general.select_path')
@@ -35,7 +35,7 @@
                         </el-form-item>
                     </el-form>
                     <el-button type="primary" @click="submitPackage">
-                        {{ $t('ncd_ui.tools_packagezip_submit') }}
+                        {{ $t('ncd_ui.tools.packagezip.submit') }}
                     </el-button>
                 </div>
             </el-main>

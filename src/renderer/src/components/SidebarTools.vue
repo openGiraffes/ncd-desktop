@@ -9,7 +9,7 @@
         <el-menu-item-group>
             <el-menu-item index="/tools/packageZip">
                 <el-icon><i-ep-files /></el-icon>
-                <template #title>{{ $t('ncd_ui.tools_packagezip') }}</template>
+                <template #title>{{ $t('ncd_ui.tools.packagezip.title') }}</template>
             </el-menu-item>
         </el-menu-item-group>
     </el-menu>

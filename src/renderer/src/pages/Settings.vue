@@ -2,21 +2,21 @@
     <div class="ncd-settings">
         <el-container>
             <el-header>
-                <h1>{{ $t('ncd_ui.sidebar_settings') }}</h1>
+                <h1>{{ $t('ncd_ui.sidebar.settings') }}</h1>
             </el-header>
             <el-main>
                 <div class="ncd-settings-form">
                     <el-form ref="settings_ref" :model="settings_form" label-position="left">
                         <el-tabs v-model="settings_activate" class="ncd-settings-tabs">
-                            <el-tab-pane label="通用" name="general">
-                                <el-form-item :label="$t('ncd_ui.settings_locale')">
+                            <el-tab-pane :label="$t('ncd_ui.settings.general.title')" name="general">
+                                <el-form-item :label="$t('ncd_ui.settings.general.locale')">
                                     <el-select v-model="settings_form.locale"
                                         @change="set_locale(settings_form.locale)">
                                         <el-option v-for="(item, index) in locales_list.locales" :key="item.code"
                                             :label="item.desc" :value="item.code" />
                                     </el-select>
                                 </el-form-item>
-                                <el-form-item :label="$t('ncd_ui.settings_kaistores')">
+                                <el-form-item :label="$t('ncd_ui.settings.general.kaistores')">
                                     <el-select v-model="settings_form.kaistores"
                                         @change="set_kaistores(settings_form.kaistores)">
                                         <el-option v-for="(item, index) in kaistore_list.kaistores" :key="item.desc"
@@ -24,75 +24,85 @@
                                     </el-select>
                                 </el-form-item>
                             </el-tab-pane>
-                            <el-tab-pane label="环境" name="env">
-                                <el-form-item :label="$t('ncd_ui.settings_adb_path')">
+                            <el-tab-pane :label="$t('ncd_ui.settings.env.title')" name="env">
+                                <el-form-item :label="$t('ncd_ui.settings.env.adb_path')">
                                     <el-input v-model="settings_form.adb_path">
                                         <template #suffix>
-                                            <el-link type="primary" @click="set_adb_path">{{
+                                            <el-link type="primary" @click="set_env_path('adb_path', 'dialog:openFolder')">{{
                                                 $t('ncd_general.select_path')
                                                 }}</el-link>
                                         </template>
                                     </el-input>
                                 </el-form-item>
-                                <el-form-item :label="$t('ncd_ui.settings_python_path')">
+                                <el-form-item :label="$t('ncd_ui.settings.env.python_path')">
                                     <el-input v-model="settings_form.python_path">
                                         <template #suffix>
-                                            <el-link type="primary" @click="set_python_path">{{
+                                            <el-link type="primary" @click="set_env_path('python_path', 'dialog:openFolder')">{{
                                                 $t('ncd_general.select_path')
                                                 }}</el-link>
                                         </template>
                                     </el-input>
                                 </el-form-item>
-                                <el-form-item :label="$t('ncd_ui.settings_gdeploy_path')">
+                                <el-form-item :label="$t('ncd_ui.settings.env.gdeploy_path')">
                                     <el-input v-model="settings_form.gdeploy_path">
                                         <template #suffix>
-                                            <el-link type="primary" @click="set_gdeploy_path">{{
+                                            <el-link type="primary" @click="set_env_path('gdeploy_path', 'dialog:openFile')">{{
                                                 $t('ncd_general.select_path')
                                                 }}</el-link>
                                         </template>
                                     </el-input>
                                 </el-form-item>
-                                <el-form-item :label="$t('ncd_ui.settings_kailive_path')">
+                                <el-form-item :label="$t('ncd_ui.settings.env.kailive_path')">
                                     <el-input v-model="settings_form.kailive_path">
                                         <template #suffix>
-                                            <el-link type="primary" @click="set_kailive_path">{{
+                                            <el-link type="primary" @click="set_env_path('kailive_path', 'dialog:openFolder')">{{
                                                 $t('ncd_general.select_path')
                                                 }}</el-link>
                                         </template>
                                     </el-input>
                                 </el-form-item>
-                                <el-form-item :label="$t('ncd_ui.settings_firefox_xul_path')">
-                                    <el-input v-model="settings_form.firefox_xul_path">
+                                <el-form-item :label="$t('ncd_ui.settings.env.firefox_xul_path')">
+                                    <el-input v-model="settings_form.firefox_xul_path"
+                                        :placeholder="$t('ncd_ui_tips.settings_firefox_xul_path')"
+                                    >
                                         <template #suffix>
-                                            <el-link type="primary" @click="set_firefox_xul_path">{{
+                                            <el-link type="primary" @click="set_env_path('firefox_xul_path', 'dialog:openFile')">{{
                                                 $t('ncd_general.select_path')
                                             }}</el-link>
                                         </template>
                                     </el-input>
                                 </el-form-item>
-                                <el-form-item :label="$t('ncd_ui.settings_firefox_quantum_path')">
-                                    <el-input v-model="settings_form.firefox_quantum_path">
+                                <el-form-item :label="$t('ncd_ui.settings.env.firefox_quantum_path')">
+                                    <el-input v-model="settings_form.firefox_quantum_path" 
+                                        :placeholder="$t('ncd_ui_tips.settings_firefox_quantum_path')"
+                                    >
                                         <template #suffix>
-                                            <el-link type="primary" @click="set_firefox_quantum_path">{{
+                                            <el-link type="primary" @click="set_env_path('firefox_quantum_path', 'dialog:openFile')">{{
                                                 $t('ncd_general.select_path')
                                             }}</el-link>
                                         </template>
                                     </el-input>
                                 </el-form-item>
                             </el-tab-pane>
-                            <el-tab-pane label="个性化" name="personal">
-                                <el-form-item :label="$t('ncd_ui.settings_download_path')">
+                            <el-tab-pane :label="$t('ncd_ui.settings.personal.title')" name="personal">
+                                <el-form-item :label="$t('ncd_ui.settings.personal.download_path')">
                                     <el-input v-model="settings_form.download_path">
                                         <template #suffix>
-                                            <el-link type="primary" @click="set_download_path">{{
+                                            <el-link type="primary" @click="set_env_path('download_path', 'dialog:openFolder')">{{
                                                 $t('ncd_general.select_path')
                                                 }}</el-link>
                                         </template>
                                     </el-input>
                                 </el-form-item>
                             </el-tab-pane>
-                            <el-tab-pane label="开发" name="dev">
-                                
+                            <el-tab-pane :label="$t('ncd_ui.settings.dev.title')" name="dev">
+                                <el-form-item :label="$t('ncd_ui.settings.dev.goto_debug')">
+                                    <el-checkbox 
+                                        v-model="settings_form.goto_debug" 
+                                        :label="$t('ncd_ui_tips.settings_goto_debug')"
+                                        @click=""
+                                    />
+                                </el-form-item>
                             </el-tab-pane>
                         </el-tabs>
                     </el-form>
@@ -122,99 +132,29 @@ const settings_form = reactive({
     adb_path: '',
     python_path: '',
     kailive_path: '',
-    gdeploy_path: '',
+    gdeploy_path: '',         // ATTENSION: gdeploy and its dependencies are so old that you need to use binaries packaged 
+                              // based on the v12.x environment before updating the code to be compatible with current
+                              // Node.js version.
     download_path: '',
-    firefox_xul_path: '',
-    firefox_quantum_path: ''
+    firefox_xul_path: '',     // firefox_xul_path works with Firefox 59.0 and earlier versions,
+                              // as well as browsers based on older versions (e.g. Waterfox Classic).
+    firefox_quantum_path: '', // firefox_quantum_path works with Firefox 59.0 and newer versions.
+    goto_debug: false
 })
 
 const settings_activate = ref('general')
 
-const set_adb_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFolder')
+
+
+const set_env_path = (env, dialog) => {
+    // dialog optional value: 'dialog:openFolder' | 'dialog:openFile'
+    const result = ipcRenderer.invoke(dialog)
     result.then((res) => {
         if (res !== undefined) {
-            settings_form.adb_path = res
-            stores.set_keys('adb_path', res)
+            settings_form[env] = res
+            stores.set_keys(env, res)
         } else {
             console.log(res)
-            return
-        }
-    })
-}
-
-const set_python_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFolder')
-    result.then((res) => {
-        if (res !== undefined) {
-            settings_form.python_path = res
-            stores.set_keys('python_path', res)
-        } else {
-            return
-        }
-    })
-}
-
-const set_gdeploy_path = () => {
-    // ATTENSION: gdeploy and its dependencies are so old that you need to use binaries packaged 
-    // based on the v12.x environment before updating the code to be compatible with current
-    // Node.js version.
-    const result = ipcRenderer.invoke('dialog:openFile')
-    result.then((res) => {
-        if (res !== undefined) {
-            settings_form.gdeploy_path = res
-            stores.set_keys('gdeploy_path', res)
-        } else {
-            return
-        }
-    })
-}
-
-const set_kailive_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFolder')
-    result.then((res) => {
-        if (res !== undefined) {
-            settings_form.kailive_path = res
-            stores.set_keys('kailive_path', res)
-        } else {
-            return
-        }
-    })
-}
-
-const set_download_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFolder')
-    result.then((res) => {
-        if (res !== undefined) {
-            settings_form.download_path = res
-            stores.set_keys('download_path', res)
-        } else {
-            return
-        }
-    })
-}
-
-// firefox_xul_path works with Firefox 59.0 and earlier versions,
-// as well as browsers based on older versions (e.g. Waterfox Classic).
-const set_firefox_xul_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFile')
-    result.then((res) => {
-        if (res !== undefined) {
-            settings_form.firefox_xul_path = res
-            stores.set_keys('firefox_xul_path', res)
-        } else {
-            return
-        }
-    })
-}
-// firefox_quantum_path works with Firefox 59.0 and newer versions.
-const set_firefox_quantum_path = () => {
-    const result = ipcRenderer.invoke('dialog:openFile')
-    result.then((res) => {
-        if (res !== undefined) {
-            settings_form.firefox_quantum_path = res
-            stores.set_keys('firefox_quantum_path', res)
-        } else {
             return
         }
     })

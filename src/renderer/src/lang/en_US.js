@@ -21,6 +21,7 @@ export default {
                 radio: 'Package Type',
                 project_path: 'Project Path',
                 save_path: 'Save Path',
+                opensave: 'Open the saved location after packaging',
                 submit: 'Package',
             }
         },

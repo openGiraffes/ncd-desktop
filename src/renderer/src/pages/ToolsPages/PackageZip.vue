@@ -12,31 +12,39 @@
                 <div class="ncd-tools-package-form">
                     <el-form ref="formRef" :model="package_form" label-width="auto">
                         <el-form-item :label="$t('ncd_ui.tools.packagezip.radio')">
-                            <el-radio-group
-                                v-model="package_default"
-                                class="ncd-tools-package-selection"
-                                @change="getModelValue"
-                            >
-                                <el-radio value="1">KaiStore</el-radio>
-                                <el-radio value="2">OmniSD</el-radio>
+                            <el-radio-group v-model="package_default" class="ncd-tools-package-selection"
+                                @change="getModelValue">
+                                <el-radio-button label="KaiStore" value="kaistore" />
+                                <el-radio-button label="OmniSD" value="omnisd" />
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item :label="$t('ncd_ui.tools.packagezip.project_path')">
-                            <el-input v-model="package_form.project_path" />
-                            <el-button type="primary" @click="get_project_folder">{{
-                                $t('ncd_general.select_path')
-                            }}</el-button>
+                            <el-input v-model="package_form.project_path">
+                                <template #suffix>
+                                    <el-link type="primary"
+                                        @click="get_project_folder"
+                                    >{{ $t('ncd_general.select_path') }}</el-link>
+                                </template>
+                            </el-input>
                         </el-form-item>
                         <el-form-item :label="$t('ncd_ui.tools.packagezip.save_path')">
-                            <el-input v-model="package_form.package_savepath" />
-                            <el-button type="primary" @click="get_save_folder">{{
-                                $t('ncd_general.select_path')
-                            }}</el-button>
+                            <el-input v-model="package_form.package_savepath">
+                                <template #suffix>
+                                    <el-link type="primary"
+                                        @click="get_save_folder"
+                                    >{{ $t('ncd_general.select_path') }}</el-link>
+                                </template>
+                            </el-input>
                         </el-form-item>
+                        <el-form-item>
+                            <el-checkbox v-model="package_open_save" 
+                                :label="$t('ncd_ui.tools.packagezip.opensave')" 
+                            />
+                        </el-form-item>
+                        <el-button type="primary" @click="submitPackage">
+                            {{ $t('ncd_ui.tools.packagezip.submit') }}
+                        </el-button>
                     </el-form>
-                    <el-button type="primary" @click="submitPackage">
-                        {{ $t('ncd_ui.tools.packagezip.submit') }}
-                    </el-button>
                 </div>
             </el-main>
         </el-container>
@@ -44,8 +52,7 @@
 </template>
 
 <script>
-import { ipcRenderer } from 'electron'
-import * as fs from '../../apis/fs'
+import { ipcRenderer, shell } from 'electron'
 
 export default {
     name: 'PackageZip',
@@ -58,7 +65,13 @@ export default {
 </script>
 
 <script setup>
-const package_default = ref(1)
+// import * as fs from '../../apis/fs'
+import { ElMessage } from 'element-plus';
+import fs from 'fs'
+const archiver = require('archiver'); // archiver currently only support CommonJS
+
+const package_open_save = ref(false)
+const package_default = ref("kaistore")
 const package_form = reactive({
     project_path: '',
     package_savepath: ''
@@ -83,12 +96,36 @@ const get_save_folder = () => {
 }
 
 const submitPackage = () => {
-    switch (package_default) {
-        case 1:
-            fs.create
+    const archive = archiver('zip', { zlib: { level: 9 } })
+    let output_package
+    switch (package_default.value) {
+        case "kaistore":
+            output_package = fs.createWriteStream(package_form.package_savepath + "/app-kaistore.zip")
+            archive.pipe(output_package)
+            archive.directory(package_form.project_path + '/application/', false)
+            archive.finalize()
+            console.log('Packaged!')
+            ElMessage({
+                message: '打包成功',
+                type: 'success'
+            })
+            break
+
+        case "omnisd":
+            output_package = fs.createWriteStream(package_form.package_savepath + "/app-omnisd.zip")
+            archive.pipe(output_package)
+            archive.directory(package_form.project_path + '/', false)
+            archive.finalize()
+            console.log('Packaged!')
+            ElMessage({
+                message: '打包成功',
+                type: 'success'
+            })
             break
     }
-    console.log('Packaged!')
+    if (package_open_save.value === true) {
+        shell.openPath(package_form.package_savepath)
+    }
 }
 </script>
 

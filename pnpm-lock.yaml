@@ -23,6 +23,9 @@ dependencies:
   '@guolao/vue-monaco-editor':
     specifier: ^1.5.1
     version: 1.5.1(monaco-editor@0.46.0)(vue@3.4.18)
+  '@types/archiver':
+    specifier: ^6.0.2
+    version: 6.0.2
   archiver:
     specifier: ^7.0.1
     version: 7.0.1
@@ -1145,6 +1148,12 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
+  /@types/archiver@6.0.2:
+    resolution: {integrity: sha512-KmROQqbQzKGuaAbmK+ZcytkJ51+YqDa7NmbXjmtC5YBLSyQYo21YaUnQ3HbaPFKL1ooo6RQ6OPYPIDyxfpDDXw==}
+    dependencies:
+      '@types/readdir-glob': 1.1.5
+    dev: false
+
   /@types/cacheable-request@6.0.3:
     resolution: {integrity: sha512-IQ3EbTzGxIigb1I3qPZc1rWJnH0BmSKv5QYTalEwweFvyBDLSAe24zP0le/hyi7ecGfZVlIVAg4BZqb8WBwKqw==}
     dependencies:
@@ -1204,8 +1213,6 @@ packages:
     requiresBuild: true
     dependencies:
       undici-types: 5.26.5
-    dev: true
-    optional: true
 
   /@types/plist@3.0.5:
     resolution: {integrity: sha512-E6OCaRmAe4WDmWNsL/9RMqdkkzDCY1etutkflWk4c+AcjDU07Pcz1fQwTX0TQz+Pxqn9i4L1TU3UFpjnrcDgxA==}
@@ -1215,6 +1222,12 @@ packages:
       xmlbuilder: 15.1.1
     dev: true
     optional: true
+
+  /@types/readdir-glob@1.1.5:
+    resolution: {integrity: sha512-raiuEPUYqXu+nvtY2Pe8s8FEmZ3x5yAH4VkLdihcPdalvsHltomrRC9BzuStrJ9yk06470hS0Crw0f1pXqD+Hg==}
+    dependencies:
+      '@types/node': 20.12.7
+    dev: false
 
   /@types/responselike@1.0.3:
     resolution: {integrity: sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==}

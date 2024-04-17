@@ -21,6 +21,7 @@ export default {
                 radio: '打包类型',
                 project_path: '项目目录',
                 save_path: '保存位置',
+                opensave: '打包完成后打开保存的位置',
                 submit: '打包',
             }
         },

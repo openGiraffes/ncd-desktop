@@ -13,12 +13,12 @@
                     <el-form ref="formRef" :model="package_form" label-width="auto">
                         <el-form-item :label="$t('ncd_ui.tools.packagezip.radio')">
                             <el-radio-group
-                                v-model="package_form.package_default"
+                                v-model="package_default"
                                 class="ncd-tools-package-selection"
                                 @change="getModelValue"
                             >
-                                <el-radio :value="1">KaiStore</el-radio>
-                                <el-radio :value="2">OmniSD</el-radio>
+                                <el-radio value="1">KaiStore</el-radio>
+                                <el-radio value="2">OmniSD</el-radio>
                             </el-radio-group>
                         </el-form-item>
                         <el-form-item :label="$t('ncd_ui.tools.packagezip.project_path')">
@@ -45,6 +45,8 @@
 
 <script>
 import { ipcRenderer } from 'electron'
+import * as fs from '../../apis/fs'
+
 export default {
     name: 'PackageZip',
     created() {
@@ -56,14 +58,14 @@ export default {
 </script>
 
 <script setup>
+const package_default = ref(1)
 const package_form = reactive({
-    package_default: 1,
     project_path: '',
     package_savepath: ''
 })
 
 const getModelValue = () => {
-    console.log(package_form.package_default)
+    console.log(package_default)
 }
 
 const get_project_folder = () => {
@@ -81,6 +83,11 @@ const get_save_folder = () => {
 }
 
 const submitPackage = () => {
+    switch (package_default) {
+        case 1:
+            fs.create
+            break
+    }
     console.log('Packaged!')
 }
 </script>

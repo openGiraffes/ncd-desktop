@@ -17,11 +17,12 @@ const externals = ['fs', 'path', 'require', /^electron(\/.+)?$/]
 export default defineConfig({
     optimizeDeps: {
         include: [
-            `monaco-editor/esm/vs/language/json/json.worker`,
-            `monaco-editor/esm/vs/language/css/css.worker`,
-            `monaco-editor/esm/vs/language/html/html.worker`,
-            `monaco-editor/esm/vs/language/typescript/ts.worker`,
-            `monaco-editor/esm/vs/editor/editor.worker`
+            'monaco-editor/esm/vs/language/json/json.worker',
+            'monaco-editor/esm/vs/language/css/css.worker',
+            'monaco-editor/esm/vs/language/html/html.worker',
+            'monaco-editor/esm/vs/language/typescript/ts.worker',
+            'monaco-editor/esm/vs/editor/editor.worker',
+            'monaco-editor/esm/vs/basic-languages/monaco.contribution'
         ],
         exclude: externals
     },

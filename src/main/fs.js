@@ -11,6 +11,7 @@ function fs_init_ready() {
     ipcMain.on('fs-rmsync', (_, file) => fs.rmSync(file))
     ipcMain.on('fs-rmdirsync', (_, folder) => fs.rmdirSync(folder))
     ipcMain.on('fs-cpsync', (_, src, dest) => fs.cpSync(src, dest, {recursive: true}))
+    ipcMain.on('fs-createwritestream', (_, path) => fs.createWriteStream(path))
     ipcMain.on('request-file-paths', (event) => {
         const dir_path = event.args[0]
         const files_path = get_all_filepaths(dir_path)
@@ -25,7 +26,8 @@ const fs_init_preload = {
     renameSync: (oldF, newF) => ipcRenderer.invoke('fs-mkdirsync', oldF, newF),
     rmSync: (file) => ipcRenderer.invoke('fs-rmsync', file),
     rmdirSync: (folder) => ipcRenderer.invoke('fs-rmdirsync', folder),
-    cpSync: (src, dest) => ipcRenderer.invoke('fs-cpsync', src, dest)
+    cpSync: (src, dest) => ipcRenderer.invoke('fs-cpsync', src, dest),
+    createWriteStream: (path) => ipcRenderer.invoke('fs-createwritestream', path)
 }
 
 export { fs_init_ready, fs_init_preload }

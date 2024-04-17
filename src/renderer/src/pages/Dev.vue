@@ -27,7 +27,6 @@ export default {
 import { ref, onMounted } from 'vue'
 import { Editor as MonacoTreeEditor, Files } from 'monaco-tree-editor'
 import { useRouter, useRoute } from 'vue-router'
-import child_process from 'child_process'
 import * as stores from '../apis/electron-store'
 import 'monaco-tree-editor/index.css'
 import * as server from '../mocks/tree-mock-server'

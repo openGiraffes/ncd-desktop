@@ -10,7 +10,8 @@ export let getReplacer = () => {
         'buffer',
         'url',
         'better-sqlite3',
-        'knex'
+        'knex',
+        'archiver'
     ]
 
     let result = {}

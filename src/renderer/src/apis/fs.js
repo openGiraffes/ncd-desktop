@@ -33,4 +33,17 @@ function cpSync(path, content) {
     ipcRenderer.send('fs-cpsync', path, content)
 }
 
-export { readFileSync, writeFileSync, mkdirSync, renameSync, rmSync, rmdirSync, cpSync }
+function createWriteStream(path) {
+    ipcRenderer.send('fs-createwritestream', path)
+}
+
+export {
+    readFileSync,
+    writeFileSync,
+    mkdirSync,
+    renameSync,
+    rmSync,
+    rmdirSync,
+    cpSync,
+    createWriteStream
+}

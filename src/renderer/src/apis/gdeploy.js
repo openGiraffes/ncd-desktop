@@ -1,5 +1,4 @@
 import child_process from 'child_process'
-import { ElMessage } from 'element-plus'
 
 function install(gdeploy_path, project_current, callback) {
     child_process.exec(`${gdeploy_path} install ${project_current}`, {encoding: 'utf8'}, 

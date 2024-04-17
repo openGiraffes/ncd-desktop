@@ -41,6 +41,9 @@ dependencies:
   element-plus:
     specifier: ^2.7.0
     version: 2.7.0(vue@3.4.18)
+  extract-zip:
+    specifier: ^2.0.1
+    version: 2.0.1
   monaco-editor:
     specifier: ^0.46.0
     version: 0.46.0
@@ -1248,7 +1251,7 @@ packages:
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.11.17
+      '@types/node': 20.12.7
     optional: true
 
   /@typescript-eslint/parser@7.0.2(eslint@8.56.0)(typescript@5.4.5):

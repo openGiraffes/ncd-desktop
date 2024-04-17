@@ -1,7 +1,7 @@
 import FirefoxClient from '@cliqz-oss/firefox-client'
 import { exec } from 'child_process'
 import extract from 'extract-zip'
-import { https } from 'follow-redirects'
+import { http, https } from 'follow-redirects'
 import fs from 'fs'
 import { mkdtemp, readdir, rm } from 'fs/promises'
 import os from 'os'
@@ -222,8 +222,7 @@ export class Device {
 function download(url: string, filePath: string) {
     return new Promise((resolve, reject) => {
         const file = fs.createWriteStream(filePath)
-        https
-            .get(url, (res) => {
+        https.get(url, (res) => {
                 res.pipe(file)
                 file.on('finish', () => file.close(resolve))
             })

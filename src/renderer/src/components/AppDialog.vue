@@ -42,9 +42,9 @@
         </div>
         <template #footer>
             <span class="dialog-footer">
-                <el-button type="primary" @click="show_dialog = false">安装到手机</el-button>
-                <el-button @click="show_dialog = false">安装并修改</el-button>
-                <el-button @click="show_dialog = false">关闭</el-button>
+                <el-button type="primary" @click="install_app_to_phone(app_data.download.kaistore)">安装到手机</el-button>
+                <el-button @click="install_app_and_edit(app_data.download.omnisd)">安装并修改</el-button>
+                <el-button @click="show_dialog.value = false">关闭</el-button>
             </span>
         </template>
     </el-dialog>
@@ -53,6 +53,9 @@
 <script>
 import { ref, onMounted, defineProps, defineExpose } from 'vue'
 import { shell } from 'electron'
+import { installApp } from '../../../main/firefox-client/services/device';
+// import extract from 'extract-zip';
+
 export default {
     name: 'AppDialog',
     data() {
@@ -76,6 +79,17 @@ export default {
 
 <script setup>
 let show_dialog = ref(false)
+async function install_app_to_phone(url) {
+    console.log(url)
+    await installApp(url).catch((err) => {
+        console.log("Failed to install: " + err)
+    })
+    show_dialog.value = false
+}
+
+async function install_app_and_edit(url) {
+    
+}
 
 defineExpose({
     show_dialog

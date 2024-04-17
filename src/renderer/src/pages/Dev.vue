@@ -25,6 +25,7 @@ export default {
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
+// import { ElMessage } from 'element-plus'
 import { Editor as MonacoTreeEditor, Files } from 'monaco-tree-editor'
 import { useRouter, useRoute } from 'vue-router'
 import * as stores from '../apis/electron-store'
@@ -125,6 +126,10 @@ async function let_run_app() {
     gdeploy.install(gdeploy_path, project_current, () => {
         let appid = localStorage.getItem('project_appid')
         gdeploy.start(gdeploy_path, appid)
+        ElMessage({
+            message: '部署成功',
+            type: 'success'
+        })
     })
 }
 
@@ -136,6 +141,10 @@ async function redeploy_app() {
         gdeploy.install(gdeploy_path, project_current, () => {
             let appid = localStorage.getItem('project_appid')
             gdeploy.start(gdeploy_path, appid)
+            ElMessage({
+                message: '部署成功',
+                type: 'success'
+            })
         })
     })
 }

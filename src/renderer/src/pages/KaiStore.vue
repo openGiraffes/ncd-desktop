@@ -16,20 +16,18 @@
                         :lg="6"
                         :xl="4"
                     >
-                        <el-card class="ncd-store-card" body-class="ncd-store-card-body">
-                            <template #header>
-                                <div class="ncd-store-card-header">
-                                    <span>{{ kaios_app.name }}</span>
-                                </div>
-                            </template>
+                        <el-card 
+                            class="ncd-store-card" 
+                            body-class="ncd-store-card-body"
+                            shadow="hover"
+                            @click="open_store_app_info(kaios_app)"
+                        >
                             <template #default>
                                 <img :src="kaios_app.icon" alt="" width="60" height="60" />
-                                <p class="ncd-store-apps-desc">{{ kaios_app.description }}</p>
-                            </template>
-                            <template #footer>
-                                <el-button plain @click="open_store_app_info(kaios_app)"
-                                    >应用信息</el-button
-                                >
+                                <p class="ncd-store-apps-desc">
+                                    <p style="font-weight: bold;">{{ kaios_app.name }}</p>
+                                    {{ kaios_app.description }}
+                                </p>
                             </template>
                         </el-card>
                     </el-col>
@@ -103,13 +101,13 @@ function open_store_app_info(appdata) {
 <style scoped>
 .ncd-store-card {
     width: 100%;
-    height: 250px;
+    height: 130px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: space-around;
-    justify-content: space-between;
+    justify-content: center;
 }
 :global(.ncd-store-card-body) {
     padding: 6px !important;
@@ -119,6 +117,7 @@ function open_store_app_info(appdata) {
     align-items: center;
 }
 .ncd-store-apps-desc {
+    width: 100%;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;

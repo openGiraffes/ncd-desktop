@@ -25,7 +25,6 @@ export default {
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-// import { ElMessage } from 'element-plus'
 import { Editor as MonacoTreeEditor, Files } from 'monaco-tree-editor'
 import { useRouter, useRoute } from 'vue-router'
 import * as stores from '../apis/electron-store'

@@ -6,10 +6,6 @@ function install(gdeploy_path, project_current, callback) {
             console.log("code: " + error)
             console.log("stdout: " + stdout)
             console.log("stderr: " + stderr)
-            ElMessage({
-                message: '部署成功',
-                type: 'success'
-            })
             localStorage.setItem('project_appid', (stdout.split(" "))[1])
             callback()
         }
@@ -34,10 +30,6 @@ function start(gdeploy_path, project_appid) {
             console.log("code: " + error)
             console.log("stdout: " + stdout)
             console.log("stderr: " + stderr)
-            ElMessage({
-                message: '部署成功',
-                type: 'success'
-            })
         }
     )
 }
@@ -48,10 +40,6 @@ function stop(gdeploy_path, project_appid) {
             console.log("code: " + error)
             console.log("stdout: " + stdout)
             console.log("stderr: " + stderr)
-            ElMessage({
-                message: '部署成功',
-                type: 'success'
-            })
         }
     )
 }

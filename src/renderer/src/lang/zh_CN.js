@@ -23,6 +23,12 @@ export default {
                 save_path: '保存位置',
                 opensave: '打包完成后打开保存的位置',
                 submit: '打包',
+            },
+            installzip: {
+                title: '安装本地 ZIP 程序包',
+                radio: '包类型',
+                path: '包路径',
+                submit: '安装',
             }
         },
         settings: {

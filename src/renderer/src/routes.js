@@ -7,6 +7,7 @@ import Account from './pages/Account.vue'
 // Tool pages
 import Tools from './pages/Tools.vue'
 import PackageZip from './pages/ToolsPages/PackageZip.vue'
+import InstallExistingPackage from './pages/ToolsPages/InstallExistingPackage.vue'
 
 export default [
     {
@@ -53,6 +54,14 @@ export default [
         path: '/tools/packageZip',
         name: 'PackageZip',
         component: PackageZip,
+        meta: {
+            keepAlive: true
+        }
+    },
+    {
+        path: '/tools/installZip',
+        name: 'InstallZip',
+        component: InstallExistingPackage,
         meta: {
             keepAlive: true
         }

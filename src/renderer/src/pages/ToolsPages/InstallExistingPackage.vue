@@ -18,31 +18,17 @@
                                 <el-radio-button label="OmniSD" value="omnisd" />
                             </el-radio-group>
                         </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.tools.packagezip.project_path')">
-                            <el-input v-model="package_form.project_path">
+                        <el-form-item :label="$t('ncd_ui.tools.installzip.path')">
+                            <el-input v-model="package_form.local_path">
                                 <template #suffix>
                                     <el-link type="primary"
-                                        @click="get_project_folder"
+                                        @click="get_package_file"
                                     >{{ $t('ncd_general.select_path') }}</el-link>
                                 </template>
                             </el-input>
                         </el-form-item>
-                        <el-form-item :label="$t('ncd_ui.tools.packagezip.save_path')">
-                            <el-input v-model="package_form.package_savepath">
-                                <template #suffix>
-                                    <el-link type="primary"
-                                        @click="get_save_folder"
-                                    >{{ $t('ncd_general.select_path') }}</el-link>
-                                </template>
-                            </el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-checkbox v-model="package_open_save" 
-                                :label="$t('ncd_ui.tools.packagezip.opensave')" 
-                            />
-                        </el-form-item>
-                        <el-button type="primary" @click="submitPackage">
-                            {{ $t('ncd_ui.tools.packagezip.submit') }}
+                        <el-button type="primary" @click="installPackage">
+                            {{ $t('ncd_ui.tools.installzip.submit') }}
                         </el-button>
                     </el-form>
                 </div>
@@ -65,66 +51,39 @@ export default {
 </script>
 
 <script setup>
-// import * as fs from '../../apis/fs'
-import { ElMessage } from 'element-plus';
 import fs from 'fs'
-const archiver = require('archiver'); // archiver currently only support CommonJS
+import * as stores from '../../apis/electron-store'
+import { installLocalApp } from '../../../../main/firefox-client/services/device';
+const AdmZip = require("adm-zip")
 
-const package_open_save = ref(false)
 const package_default = ref("kaistore")
 const package_form = reactive({
-    project_path: '',
-    package_savepath: ''
+    local_path: '',
 })
 
 const getModelValue = () => {
     console.log(package_default)
 }
 
-const get_project_folder = () => {
-    const result = ipcRenderer.invoke('dialog:openFolder')
+const get_package_file = () => {
+    const result = ipcRenderer.invoke('dialog:openFile')
     result.then((res) => {
-        package_form.project_path = res
+        package_form.local_path = res
     })
 }
 
-const get_save_folder = () => {
-    const result = ipcRenderer.invoke('dialog:openFolder')
-    result.then((res) => {
-        package_form.package_savepath = res
-    })
-}
-
-const submitPackage = () => {
-    const archive = archiver('zip', { zlib: { level: 9 } })
-    let output_package
-    switch (package_default.value) {
-        case "kaistore":
-            output_package = fs.createWriteStream(package_form.package_savepath + "/app-kaistore.zip")
-            archive.pipe(output_package)
-            archive.directory(package_form.project_path + '/application/', false)
-            archive.finalize()
-            console.log('Packaged!')
-            ElMessage({
-                message: '打包成功',
-                type: 'success'
-            })
+const installPackage = async () => {
+    let download_path = await stores.get_keys('download_path') + "/temp"
+    switch(package_default.value) {
+        case 'kaistore':
+            installLocalApp(package_form.local_path)
             break
 
-        case "omnisd":
-            output_package = fs.createWriteStream(package_form.package_savepath + "/app-omnisd.zip")
-            archive.pipe(output_package)
-            archive.directory(package_form.project_path + '/', false)
-            archive.finalize()
-            console.log('Packaged!')
-            ElMessage({
-                message: '打包成功',
-                type: 'success'
-            })
+        case 'omnisd':
+            let zip = new AdmZip(package_form.local_path)
+            zip.extractAllTo(download_path, true)
+            installLocalApp(download_path + '/application.zip')
             break
-    }
-    if (package_open_save.value === true) {
-        shell.openPath(package_form.package_savepath)
     }
 }
 </script>

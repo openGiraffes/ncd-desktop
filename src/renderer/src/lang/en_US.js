@@ -23,6 +23,12 @@ export default {
                 save_path: 'Save Path',
                 opensave: 'Open the saved location after packaging',
                 submit: 'Package',
+            },
+            installzip: {
+                title: 'Install Local ZIP Package',
+                radio: 'Package Type',
+                path: 'Local Package Path',
+                submit: 'Install',
             }
         },
         settings: {

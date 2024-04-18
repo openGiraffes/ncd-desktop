@@ -1,5 +1,8 @@
 import { Device } from "./firefox-client/device"
-import { ipcMain, ipcRenderer } from "electron"
+import { ipcMain, ipcRenderer, BrowserWindow } from "electron"
+import { download } from 'electron-dl';
+import Store from 'electron-store'
+const store = new Store()
 
 function firefox_client_init_main() {
     ipcMain.handle('device-info', async (_) => {
@@ -89,7 +92,7 @@ function firefox_client_init_main() {
             throw new Error('BrowserWindow not found')
         }
         // would be better if
-        await download(win, url, { saveAs: true })
+        await download(win, url, { directory: await store.get('project_path') })
     })
 }
 
@@ -104,4 +107,9 @@ const firefox_client_init_preload = {
     closeApp: (appId) => ipcRenderer.invoke('device-close-app', appId)
 }
 
-export { firefox_client_init_main, firefox_client_init_preload }
+const firefox_client_init_preload_browser = {
+    openUrl: (url) => ipcRenderer.invoke('open-url', url),
+    downloadUrl: (url) => ipcRenderer.invoke('download-url', url)
+}
+
+export { firefox_client_init_main, firefox_client_init_preload, firefox_client_init_preload_browser }

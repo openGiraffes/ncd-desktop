@@ -42,7 +42,8 @@ async function handleProjectOpen() {
         title: 'Select ncd.project file',
         properties: ['openFile'],
         filters: [
-            { name: "NCD Project File", extensions: ['ncdproject']}
+            { name: "NCD Project File", extensions: ['ncdproject']},
+            { name: "OmniSD metadata.json", extensions: ['json']}
         ]
     }
     const { canceled, filePaths } = await dialog.showOpenDialog(options)
@@ -51,7 +52,7 @@ async function handleProjectOpen() {
         return
     } else {
         console.log(2, filePaths)
-        return path.dirname(filePaths[0])
+        return path.posix.dirname(filePaths[0])
     }
 }
 

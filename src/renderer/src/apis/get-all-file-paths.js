@@ -8,7 +8,7 @@ async function get_all_filepaths(dirPath) {
         const items = await fs.readdirSync(currentPath)
 
         for (const item of items) {
-            const itemPath = path.join(currentPath, item)
+            const itemPath = path.posix.join(currentPath, item)
             const stat = fs.statSync(itemPath)
 
             if (stat.isFile()) {

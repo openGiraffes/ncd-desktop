@@ -43,18 +43,23 @@
         <template #footer>
             <span class="dialog-footer">
                 <el-button type="primary" @click="install_app_to_phone(app_data.download.kaistore)">安装到手机</el-button>
-                <el-button @click="install_app_and_edit(app_data.download.omnisd)">安装并修改</el-button>
-                <el-button @click="show_dialog.value = false">关闭</el-button>
+                <el-button @click="install_app_and_edit(app_data.download.omnisd, app_data.name)">安装并修改</el-button>
+                <el-button @click="show_dialog = false">关闭</el-button>
             </span>
         </template>
     </el-dialog>
 </template>
 
 <script>
+import path from 'path'
 import { ref, onMounted, defineProps, defineExpose } from 'vue'
-import { shell } from 'electron'
 import { installApp } from '../../../main/firefox-client/services/device';
-// import extract from 'extract-zip';
+import { downloadUrl } from '../../../main/firefox-client/services/browser';
+import * as stores from '../apis/electron-store'
+import * as fs from '../apis/fs'
+import * as server from '../mocks/tree-mock-server'
+import { useRouter, useRoute } from 'vue-router'
+const AdmZip = require("adm-zip")
 
 export default {
     name: 'AppDialog',
@@ -78,6 +83,7 @@ export default {
 </script>
 
 <script setup>
+const router = useRouter()
 let show_dialog = ref(false)
 async function install_app_to_phone(url) {
     console.log(url)
@@ -87,8 +93,24 @@ async function install_app_to_phone(url) {
     show_dialog.value = false
 }
 
-async function install_app_and_edit(url) {
-    
+async function install_app_and_edit(url, appname) {
+    let project_path = await stores.get_keys('project_path')
+    let dest_path = project_path + "/" + appname
+    downloadUrl(url)
+
+    // For omnisd package only
+    const zip = new AdmZip(project_path + "/" + path.basename(url))
+    zip.extractAllTo(dest_path, true)
+    const zip_application = new AdmZip(dest_path + "/application.zip")
+    zip_application.extractAllTo(dest_path + "/application", true)
+    fs.rmSync(dest_path + "/application.zip")
+
+    setTimeout(() => {
+        localStorage.setItem('project_current', dest_path)
+        server.getFiles(dest_path)
+        router.push({ path: 'dev', query: { refresh: true }})
+        show_dialog.value = false
+    }, 1000)
 }
 
 defineExpose({

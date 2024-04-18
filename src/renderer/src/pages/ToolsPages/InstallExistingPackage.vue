@@ -77,12 +77,20 @@ const installPackage = async () => {
     switch(package_default.value) {
         case 'kaistore':
             installLocalApp(package_form.local_path)
+            ElMessage({
+                message: '(KaiStore) 安装成功，请到手机上查看',
+                type: 'success'
+            })
             break
 
         case 'omnisd':
             let zip = new AdmZip(package_form.local_path)
             zip.extractAllTo(download_path, true)
             installLocalApp(download_path + '/application.zip')
+            ElMessage({
+                message: '(OmniSD) 安装成功，请到手机上查看',
+                type: 'success'
+            })
             break
     }
 }

@@ -23,7 +23,14 @@ $ pnpm build:linux
 
 你需要安装并在 NCD 中设置这些工具的路径才能使用：
 
+Waterfox Classic: https://classic.waterfox.net/
 gdeploy: https://github.com/openGiraffes/gdeploy/releases  
 Python 3.7 (for KaiLive): https://www.python.org/downloads/release/python-379/  
 KaiScr and KaiLive: https://github.com/openGiraffes/kaiscr-tkinter-win  
 Android Platform Tools: https://developer.android.com/tools/releases/platform-tools?hl=en  
+
+## Thanks
+
+[garredow/kaiware](https://github.com/garredow/kaiware)  
+[NothingSpecialDev/kaiware](https://github.com/NothingSpecialDev/kaiware)  
+[AlphaFoxz/monaco-tree-editor](https://github.com/AlphaFoxz/monaco-tree-editor)  

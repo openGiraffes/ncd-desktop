@@ -1,28 +1,14 @@
-# my-app
+# ncd-desktop
 
-An Electron application with Vue
+(完善中)全新版本的九色鹿软件
 
-## Recommended IDE Setup
-
--   [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-
-## Project Setup
-
-### Install
+## 编译这个项目
 
 ```bash
 $ pnpm install
-```
 
-### Development
-
-```bash
 $ pnpm dev
-```
 
-### Build
-
-```bash
 # For windows
 $ pnpm build:win
 
@@ -32,3 +18,12 @@ $ pnpm build:mac
 # For Linux
 $ pnpm build:linux
 ```
+
+## 需要的工具
+
+你需要安装并在 NCD 中设置这些工具的路径才能使用：
+
+gdeploy: https://github.com/openGiraffes/gdeploy/releases
+Python 3.7 (for KaiLive): https://www.python.org/downloads/release/python-379/
+KaiScr and KaiLive: https://github.com/openGiraffes/kaiscr-tkinter-win
+Android Platform Tools: https://developer.android.com/tools/releases/platform-tools?hl=en
